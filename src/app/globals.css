@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "../styles/main.css";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+body {
+  @apply bg-background text-foreground border-border;
+}

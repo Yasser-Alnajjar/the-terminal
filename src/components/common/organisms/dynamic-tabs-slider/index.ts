@@ -1,0 +1,1 @@
+export {DynamicTabsSlider} from "./DynamicTabsSlider"

@@ -1,0 +1,184 @@
+{
+  "common": {
+    "add": "إضافة"
+  },
+  "under-construction": {
+    "title": "قيد الإنشاء",
+    "description": "نقوم حالياً بترقية المنصة — بإضافة مزايا جديدة، وتحسين الأداء، وتعزيز تجربة المستخدم.",
+    "coming-soon": "جارٍ العمل",
+    "footer": "© {time} نقرة جميع الحقوق محفوظة."
+  },
+  "dropzone": {
+    "attachmentTypePlaceholder": "نوع المرفق",
+    "document": "مستند",
+    "image": "صورة",
+    "pdf": "ملف PDF",
+    "other": "أخرى",
+    "dragAndDropText": "قم بسحب وإفلات ملفاتك هنا أو",
+    "chooseFile": "اختر ملف",
+    "supportedFormats": "الصيغ المدعومة: PDF، JPG، PNG، DOC",
+    "maxSize": "الحد الأقصى للحجم: 5 ميجابايت",
+    "completed": "مكتمل",
+    "failed": "فشل التحميل",
+    "uploadFailed": "فشل تحميل الملف",
+    "cancel": "إلغاء",
+    "attachFiles": "إرفاق الملفات"
+  },
+  "stepper_form": {
+    "back": "السابق",
+    "save": "حفظ",
+    "next": "التالي",
+    "cancel": "الغاء"
+  },
+  "dataTable": {
+    "total": "إجمالي: {count} أعمدة",
+    "search": "بحث...",
+    "all_column": "جميع الأعمدة",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "delete_title": "هل تريد حذف الملف؟",
+    "type_delete": "اكتب <b>delete</b> للمتابعة",
+    "here": "اكتب delete هنا",
+    "delete_Description": "لا يمكن التراجع عن هذا الاستعلام. سيتم حذف العنصر نهائيًا.",
+    "continue": "متابعة",
+    "cancel": "الغاء",
+    "no_data": "لم يتم العثور علي بيانات, من فضلك أضف بيانات جديدة.",
+    "add_filter": "اضافة فلتر",
+    "clear_filters": "حذف الفلاتر",
+    "view": "عرض",
+    "apply_filters": "تطبيق الفلاتر",
+    "empty": {
+      "title": "لا توجد بيانات",
+      "description": "لا توجد عناصر حالياً في هذا الجدول. ابدأ بإضافة عنصر جديد."
+    },
+    "export": {
+      "title": "تصدير المؤسسات إلى ملف",
+      "tooltip": "تصدير البيانات",
+      "recordCount": "سيحتوي الملف المُصدَّر على {count} سجلات.",
+      "fileFormat": {
+        "label": "صيغة الملف",
+        "csv": "CSV",
+        "json": "JSON"
+      },
+      "delimiter": {
+        "label": "الفاصل",
+        "tab": "علامة الجدولة (\\t)",
+        "semicolon": "فاصلة منقوطة (;)",
+        "comma": "فاصلة (,)"
+      },
+      "mode": {
+        "label": "وضع التصدير",
+        "all": "الكل",
+        "custom": "مخصص"
+      },
+      "fields": {
+        "label": "اختر الحقول التي تريد تضمينها"
+      },
+      "actions": {
+        "cancel": "إلغاء",
+        "export": "تصدير إلى ملف"
+      }
+    },
+    "status": {
+      "status": "الحالة",
+      "active": "نشط",
+      "inactive": "غير نشط"
+    },
+    "bulk_delete": {
+      "delete": "حذف",
+      "alertTitle": "هل أنت متأكد تمامًا؟",
+      "alertDescription": "لا يمكن التراجع عن هذا الإجراء. سيتم حذف الصفوف المحددة نهائيًا.",
+      "continue": "متابعة",
+      "cancel": "إلغاء"
+    },
+    "filters": {
+      "filters": "التصنيفات",
+      "search": "بحث...",
+      "noFilters": "لا توجد فلاتر",
+      "cancel": "إلغاء",
+      "applyAll": "تطبيق الكل"
+    },
+    "pagination": {
+      "previous": "السابق",
+      "next": "التالي",
+      "show": "عرض",
+      "perPage": "في الصفحة"
+    }
+  },
+  "dynamic_form": {
+    "save": "حفظ",
+    "cancel": "الغاء",
+    "add": "اضافة",
+    "delete": "حذف",
+    "add_row": "اضافة صف",
+    "no_data": "لم يتم العثور علي بيانات, من فضلك أضف بيانات جديدة.",
+    "validation": {
+      "required": "{field} مطلوب",
+      "minLength": "يجب أن يحتوي {field} على الأقل {count} أحرف",
+      "maxLength": "يجب ألا يحتوي {field} على أكثر من {count} أحرف",
+      "pattern": "تنسيق {field} غير صالح",
+      "password": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل، وتحتوي على حرف كبير واحد على الأقل، وحرف صغير واحد على الأقل، ورقم واحد، وحرف خاص واحد.",
+      "email": "بريد إلكتروني غير صالح",
+      "url": "رابط غير صالح",
+      "phone": "رقم الهاتف غير صالح",
+      "number": "يجب أن يكون {field} رقمًا",
+      "min": "يجب أن يكون {field} أكبر من أو يساوي {count}",
+      "max": "يجب أن يكون {field} أصغر من أو يساوي {count}",
+      "integer": "يجب أن يكون {field} عددًا صحيحًا",
+      "positive": "يجب أن يكون {field} موجبًا",
+      "negative": "يجب أن يكون {field} سالبًا",
+      "accepted": "يجب قبول {field}",
+      "date": "يجب أن يكون {field} تاريخًا صالحًا",
+      "minDate": "يجب أن يكون {field} بعد {date}",
+      "maxDate": "يجب أن يكون {field} قبل {date}",
+      "select": "يجب اختيار {field} صالح",
+      "minItems": "اختر على الأقل {count} من {field}",
+      "maxItems": "اختر بحد أقصى {count} من {field}",
+      "invalidSelection": "اختيار غير صالح",
+      "fileInvalid": "ملف غير صالح",
+      "fileType": "يجب أن يكون نوع الملف: {types}",
+      "fileSize": "يجب أن يكون حجم الملف أقل من {size} ميجابايت"
+    }
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "email-format": "تنسيق البريد الإلكتروني غير صالح",
+    "email-required": "البريد الإلكتروني مطلوب",
+    "password": "كلمة المرور",
+    "password-format": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل وتشمل حرفًا كبيرًا وحرفًا صغيرًا ورقمًا ورمزًا خاصًا.",
+    "validation": {
+      "required": "حقل {field} مطلوب"
+    },
+    "placeholder": {
+      "enter": "أدخل {field} هنا"
+    },
+    "login_success": "تم تسجيل الدخول بنجاح",
+    "login_success_description": "تم تسجيل الدخول بنجاح إلى النظام.",
+    "login_failed": "فشل تسجيل الدخول",
+    "login_failed_description": "البريد الإلكتروني أو كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى."
+  },
+  "profile": {
+    "dark": "الوضع اليلي",
+    "sign_out": "تسجيل الخروج"
+  },
+  "header": {
+    "organizations": "المنظمات",
+    "users": "المستخدمون",
+    "entities": "إدارة الكيانات",
+    "platform": "إدارة المنصة",
+    "cases": "القضايا",
+    "alerts": "التنبيهات",
+    "tasks": "المهام",
+    "knowledge": "قاعدة المعرفة",
+    "dashboards": "لوحات المعلومات",
+    "organizations_list": "قائمة المنظمات"
+  },
+  "ADMIN": {
+    "organization": {
+      "add_new": "اضافة منظمة جديدة",
+      "title": "المنظمات",
+      "description": "ادارة المنظمات"
+    }
+  }
+}

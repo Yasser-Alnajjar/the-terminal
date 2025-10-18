@@ -1,0 +1,7 @@
+@import "./animations.css";
+@import "./layout.css";
+@import "./colors.css";
+@import "./custom.css";
+@import "./typography.css";
+
+@custom-variant dark (&:is(.dark *));

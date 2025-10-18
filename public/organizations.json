@@ -1,0 +1,28 @@
+[
+  {
+    "_id": "~42569960",
+    "_type": "Organisation",
+    "_createdBy": "admin@thehive.local",
+    "_createdAt": 1759235400131,
+    "name": "test",
+    "description": "test",
+    "taskRule": "autoShare",
+    "observableRule": "autoShare",
+    "links": [],
+    "locked": false,
+    "extraData": {}
+  },
+  {
+    "_id": "~8192",
+    "_type": "Organisation",
+    "_createdBy": "system@thehive.local",
+    "_createdAt": 1759234705708,
+    "name": "admin",
+    "description": "organisation for administration",
+    "taskRule": "manual",
+    "observableRule": "manual",
+    "links": [],
+    "locked": false,
+    "extraData": {}
+  }
+]
