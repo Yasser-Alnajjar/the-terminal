@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   DropdownMenu,
@@ -10,18 +10,19 @@ import {
   DropdownMenuSeparator,
 } from "@components";
 import { MoreVertical } from "lucide-react";
-import { DataTableDeleteColumn } from "./data-table-delete-column";
 import { cn } from "@lib/utils";
 
 export interface IDataTableAction {
   name: string;
   key: string;
+  selectedKey?: string;
   className?: string;
   icon?: React.ReactNode;
   onClick?: (row: any) => void;
   hidden?: (row: any) => boolean;
   disabled?: boolean | ((row: any) => boolean);
   dividerBefore?: boolean;
+  render?: (row: any, open: boolean, close: () => void) => React.ReactNode;
 }
 
 interface IDataTableActionsProps {
@@ -30,34 +31,43 @@ interface IDataTableActionsProps {
 }
 
 export function DataTableActions({ actions, row }: IDataTableActionsProps) {
+  const [activeAction, setActiveAction] = useState<IDataTableAction | null>(
+    null
+  );
+  const [open, setOpen] = useState(false);
+
   const visibleActions = actions.filter(
     (action) => !action.hidden || !action.hidden(row)
   );
 
+  const handleSelect = (action: IDataTableAction) => {
+    if (action.render) {
+      setActiveAction(action);
+      setOpen(true);
+    } else {
+      action.onClick?.(row);
+    }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    // delay to let close animation finish
+    setTimeout(() => setActiveAction(null), 150);
+  };
+
   if (!visibleActions.length) return null;
 
+  // 👇 Render the interactive dropdown
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className={cn("sticky end-0")}>
-          <MoreVertical className="h-4 w-4" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="rounded-xl min-w-[8rem]">
-        {visibleActions.map((action, i) =>
-          action.key === "delete" ? (
-            <React.Fragment key={i}>
-              {action.dividerBefore && <DropdownMenuSeparator />}
-              <DataTableDeleteColumn
-                key={i}
-                row={row}
-                triggerType="menu"
-                triggerClassName={action.className}
-                mode="single"
-                onDelete={(ids) => action.onClick?.(ids)}
-              />
-            </React.Fragment>
-          ) : (
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" size="icon" className={cn("sticky end-0")}>
+            <MoreVertical className="h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="rounded-xl min-w-[8rem]">
+          {visibleActions.map((action, i) => (
             <React.Fragment key={i}>
               {action.dividerBefore && <DropdownMenuSeparator />}
               <DropdownMenuItem
@@ -67,15 +77,19 @@ export function DataTableActions({ actions, row }: IDataTableActionsProps) {
                     ? action.disabled(row)
                     : action.disabled
                 }
-                onClick={() => action.onClick?.(row)}
+                onClick={() => handleSelect(action)}
               >
                 {action.icon && action.icon}
                 <span>{action.name}</span>
               </DropdownMenuItem>
             </React.Fragment>
-          )
-        )}
-      </DropdownMenuContent>
-    </DropdownMenu>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      {activeAction &&
+        activeAction.render &&
+        activeAction.render(row, open, handleClose)}
+    </>
   );
 }

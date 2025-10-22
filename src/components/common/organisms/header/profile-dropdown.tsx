@@ -5,7 +5,6 @@ import { useSession, signOut } from "next-auth/react";
 import {
   Avatar,
   AvatarFallback,
-  AvatarImage,
   Button,
   DropdownMenu,
   DropdownMenuContent,
@@ -35,10 +34,6 @@ export const ProfileDropdown = ({ className }: { className?: string }) => {
           size="icon"
         >
           <Avatar>
-            <AvatarImage
-              src={session?.user?.image}
-              className="object-contain"
-            />
             <AvatarFallback className="capitalize">
               {session?.user?.name?.charAt(0)}
             </AvatarFallback>
@@ -49,10 +44,6 @@ export const ProfileDropdown = ({ className }: { className?: string }) => {
         <DropdownMenuLabel className="p-0 font-normal">
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <Avatar className="size-8">
-              <AvatarImage
-                src={session?.user?.image}
-                className="object-contain"
-              />
               <AvatarFallback className="capitalize rounded-lg">
                 {session?.user?.name?.charAt(0)}
               </AvatarFallback>
@@ -62,7 +53,7 @@ export const ProfileDropdown = ({ className }: { className?: string }) => {
                 {session?.user?.name}
               </span>
               <span className="text-muted-foreground truncate text-xs">
-                {session?.user?.email}
+                {session?.user?._createdBy}
               </span>
             </div>
           </div>

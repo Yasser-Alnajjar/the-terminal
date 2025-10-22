@@ -48,7 +48,9 @@ export function useBuildYupSchema(
 
           if (field.required) {
             validator = validator.required(
-              t("required", { field: field.label as string })
+              t("required", {
+                field: (field.name as string) || (field.label as string),
+              })
             );
           }
 
@@ -56,7 +58,7 @@ export function useBuildYupSchema(
             validator = validator.min(
               field.minLength,
               t("minLength", {
-                field: field.label as string,
+                field: (field.name as string) || (field.label as string),
                 count: field.minLength,
               })
             );
@@ -66,7 +68,7 @@ export function useBuildYupSchema(
             validator = validator.max(
               field.maxLength,
               t("maxLength", {
-                field: field.label as string,
+                field: (field.name as string) || (field.label as string),
                 count: field.maxLength,
               })
             );
@@ -76,7 +78,9 @@ export function useBuildYupSchema(
             validator = validator.matches(
               new RegExp(field.pattern),
               field.patternMessage ||
-                t("pattern", { field: field.label as string })
+                t("pattern", {
+                  field: (field.name as string) || (field.label as string),
+                })
             );
           }
 
@@ -93,7 +97,9 @@ export function useBuildYupSchema(
 
           if (field.required) {
             validator = validator.required(
-              t("required", { field: field.label as string })
+              t("required", {
+                field: (field.name as string) || (field.label as string),
+              })
             );
           }
 
@@ -101,7 +107,7 @@ export function useBuildYupSchema(
             validator = validator.min(
               field.minLength,
               t("minLength", {
-                field: field.label as string,
+                field: (field.name as string) || (field.label as string),
                 count: field.minLength,
               })
             );
@@ -111,7 +117,7 @@ export function useBuildYupSchema(
             validator = validator.max(
               field.maxLength,
               t("maxLength", {
-                field: field.label as string,
+                field: (field.name as string) || (field.label as string),
                 count: field.maxLength,
               })
             );
@@ -121,7 +127,9 @@ export function useBuildYupSchema(
             validator = validator.matches(
               new RegExp(field.pattern),
               field.patternMessage ||
-                t("pattern", { field: field.label as string })
+                t("pattern", {
+                  field: (field.name as string) || (field.label as string),
+                })
             );
           }
 
@@ -136,7 +144,9 @@ export function useBuildYupSchema(
 
           if (field.required) {
             validator = validator.required(
-              t("required", { field: field.label as string })
+              t("required", {
+                field: (field.name as string) || (field.label as string),
+              })
             );
           }
 
@@ -149,7 +159,9 @@ export function useBuildYupSchema(
 
           if (field.required) {
             validator = validator.required(
-              t("required", { field: field.label as string })
+              t("required", {
+                field: (field.name as string) || (field.label as string),
+              })
             );
           }
 
@@ -162,7 +174,9 @@ export function useBuildYupSchema(
 
           if (field.required) {
             validator = validator.required(
-              t("required", { field: field.label as string })
+              t("required", {
+                field: (field.name as string) || (field.label as string),
+              })
             );
           }
 
@@ -179,43 +193,61 @@ export function useBuildYupSchema(
         case "number": {
           let validator = yup
             .number()
-            .typeError(t("number", { field: field.label as string }));
+            .typeError(
+              t("number", {
+                field: (field.name as string) || (field.label as string),
+              })
+            );
 
           if (field.required) {
             validator = validator.required(
-              t("required", { field: field.label as string })
+              t("required", {
+                field: (field.name as string) || (field.label as string),
+              })
             );
           }
 
           if (field.min !== undefined) {
             validator = validator.min(
               field.min,
-              t("min", { field: field.label as string, count: field.min })
+              t("min", {
+                field: (field.name as string) || (field.label as string),
+                count: field.min,
+              })
             );
           }
 
           if (field.max !== undefined) {
             validator = validator.max(
               field.max,
-              t("max", { field: field.label as string, count: field.max })
+              t("max", {
+                field: (field.name as string) || (field.label as string),
+                count: field.max,
+              })
             );
           }
 
           if (field.integer) {
             validator = validator.integer(
-              t("integer", { field: field.label as string })
+              t("integer", {
+                field: (field.name as string) || (field.label as string),
+              })
             );
           }
 
           if (field.positive) {
             validator = validator.positive(
-              t("positive", { field: field.label as string })
+              t("positive", {
+                field: (field.name as string) || (field.label as string),
+              })
             );
           }
 
           if (field.negative) {
             validator = validator.negative(
-              t("negative", { field: field.label as string })
+              t("negative", {
+                field: (field.name as string) || (field.label as string),
+              })
             );
           }
 
@@ -229,7 +261,9 @@ export function useBuildYupSchema(
           if (field.required) {
             validator = validator.oneOf(
               [true],
-              t("accepted", { field: field.label as string })
+              t("accepted", {
+                field: (field.name as string) || (field.label as string),
+              })
             );
           }
 
@@ -240,11 +274,17 @@ export function useBuildYupSchema(
         case "date": {
           let validator = yup
             .date()
-            .typeError(t("date", { field: field.label as string }));
+            .typeError(
+              t("date", {
+                field: (field.name as string) || (field.label as string),
+              })
+            );
 
           if (field.required) {
             validator = validator.required(
-              t("required", { field: field.label as string })
+              t("required", {
+                field: (field.name as string) || (field.label as string),
+              })
             );
           }
 
@@ -256,7 +296,7 @@ export function useBuildYupSchema(
             validator = validator.min(
               minDate,
               t("minDate", {
-                field: field.label as string,
+                field: (field.name as string) || (field.label as string),
                 date: minDate.toDateString(),
               })
             );
@@ -270,7 +310,7 @@ export function useBuildYupSchema(
             validator = validator.max(
               maxDate,
               t("maxDate", {
-                field: field.label as string,
+                field: (field.name as string) || (field.label as string),
                 date: maxDate.toDateString(),
               })
             );
@@ -285,7 +325,9 @@ export function useBuildYupSchema(
 
           if (field.required) {
             validator = validator.required(
-              t("required", { field: field.label as string })
+              t("required", {
+                field: (field.name as string) || (field.label as string),
+              })
             );
           }
 
@@ -293,7 +335,9 @@ export function useBuildYupSchema(
             const validValues = field.options.map((opt) => String(opt.value));
             validator = validator.oneOf(
               validValues,
-              t("select", { field: field.label as string })
+              t("select", {
+                field: (field.name as string) || (field.label as string),
+              })
             );
           }
 
@@ -307,7 +351,9 @@ export function useBuildYupSchema(
           if (field.required) {
             validator = validator.min(
               1,
-              t("required", { field: field.label as string })
+              t("required", {
+                field: (field.name as string) || (field.label as string),
+              })
             );
           }
 
@@ -315,7 +361,7 @@ export function useBuildYupSchema(
             validator = validator.min(
               field.minItems,
               t("minItems", {
-                field: field.label as string,
+                field: (field.name as string) || (field.label as string),
                 count: field.minItems,
               })
             );
@@ -325,7 +371,7 @@ export function useBuildYupSchema(
             validator = validator.max(
               field.maxItems,
               t("maxItems", {
-                field: field.label as string,
+                field: (field.name as string) || (field.label as string),
                 count: field.maxItems,
               })
             );
@@ -348,7 +394,9 @@ export function useBuildYupSchema(
             .mixed<File[] | FileList>()
             .test(
               "fileRequired",
-              t("required", { field: field.label as string }),
+              t("required", {
+                field: (field.name as string) || (field.label as string),
+              }),
               function (value) {
                 if (field.required) {
                   if (
@@ -358,7 +406,10 @@ export function useBuildYupSchema(
                   ) {
                     return this.createError({
                       message: t("required", {
-                        field: (field.label as string) || field.name,
+                        field:
+                          (field.name as string) ||
+                          (field.label as string) ||
+                          field.name,
                       }),
                     });
                   }
@@ -433,7 +484,9 @@ export function useBuildYupSchema(
 
           if (field.required) {
             validator = validator.required(
-              t("required", { field: field.label as string })
+              t("required", {
+                field: (field.name as string) || (field.label as string),
+              })
             );
           }
 

@@ -2,7 +2,11 @@ export interface IUser {
   _id: string;
   _createdBy: string;
   _createdAt: number;
+  _updatedAt?: number;
+  _updatedBy?: string;
+  image?: string;
   login: string;
+  email?: string;
   password: string;
   name: string;
   hasKey: boolean;

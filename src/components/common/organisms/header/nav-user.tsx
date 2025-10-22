@@ -30,10 +30,6 @@ export function NavUser() {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton size="lg">
               <Avatar className="size-8">
-                <AvatarImage
-                  src={session?.user?.image}
-                  className="object-contain"
-                />
                 <AvatarFallback className="capitalize rounded-lg">
                   {session?.user?.name?.charAt(0)}
                 </AvatarFallback>
@@ -43,7 +39,7 @@ export function NavUser() {
                   {session?.user?.name}
                 </span>
                 <span className="text-muted-foreground truncate text-xs">
-                  {session?.user?.email}
+                  {session?.user?._createdBy}
                 </span>
               </div>
             </SidebarMenuButton>
@@ -57,10 +53,6 @@ export function NavUser() {
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="size-8">
-                  <AvatarImage
-                    src={session?.user?.image}
-                    className="object-contain"
-                  />
                   <AvatarFallback className="capitalize rounded-lg">
                     {session?.user?.name?.charAt(0)}
                   </AvatarFallback>
@@ -70,7 +62,7 @@ export function NavUser() {
                     {session?.user?.name}
                   </span>
                   <span className="text-muted-foreground truncate text-xs">
-                    {session?.user?.email}
+                    {session?.user?._createdBy}
                   </span>
                 </div>
               </div>

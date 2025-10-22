@@ -32,8 +32,7 @@ export function useSidebarItems(t: any) {
       "tasks",
       "knowledge",
       "dashboards",
-      "search",
-      "organizations",
+      "organization",
     ].includes(item.key)
   );
 }
@@ -76,5 +75,10 @@ const allSidebarItems = (t: any) => [
     title: t("dashboards"),
     url: "/dashboards",
     icon: <LayoutDashboard />,
+  },{
+    key: "organization",
+    title: t("organizations"),
+    url: "/organization",
+    icon: <Landmark />,
   },
 ];

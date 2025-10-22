@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  Input,
+  ProgressInput,
   Switch,
   Checkbox,
   RadioGroup,
@@ -134,11 +134,7 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
     <Field name={fullName}>
       {({ field: formikField, form }: any) => {
         const value = formikField.value ?? "";
-        const variant =
-          (form?.touched[fullName] || form.submitCount > 0) &&
-          form?.errors[fullName]
-            ? "error"
-            : "default";
+        const variant = form?.errors[fullName] ? "error" : "default";
 
         switch (field.type) {
           case "checkbox":
@@ -221,12 +217,12 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
                 <SelectTrigger
                   variant={variant}
                   className={cn(field.className)}
+                  filled={field.filled}
                 >
                   <SelectValue
                     placeholder={
-                      field.placeholder || locale === "ar"
-                        ? "اختر..."
-                        : "Select..."
+                      field.placeholder ??
+                      (locale === "ar" ? "اختر..." : "Select...")
                     }
                   />
                 </SelectTrigger>
@@ -348,9 +344,10 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
               <Popover key={fullName}>
                 <PopoverTrigger asChild>
                   <div className="relative flex gap-2">
-                    <Input
+                    <ProgressInput
                       id={fullName}
                       variant={variant}
+                      filled={field.filled}
                       value={
                         value instanceof Date
                           ? format(value, "MMMM dd, yyyy", {
@@ -526,8 +523,9 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
             return field.custom;
           default:
             return (
-              <Input
+              <ProgressInput
                 key={fullName}
+                filled={field.filled}
                 type={field.type || "text"}
                 placeholder={field.placeholder}
                 dir={locale === "en" ? "ltr" : "rtl"}

@@ -56,6 +56,8 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "date-fns": "^4.1.0",
+    "echarts": "^6.0.0",
+    "echarts-for-react": "^3.0.2",
     "embla-carousel-react": "^8.3.0",
     "formik": "^2.4.6",
     "framer-motion": "^12.23.14",

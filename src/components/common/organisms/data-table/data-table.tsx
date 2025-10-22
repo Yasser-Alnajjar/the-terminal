@@ -37,6 +37,7 @@ interface DataTableProps<TData, TValue> {
   headerClassName?: string;
   paginated?: boolean;
   onDelete?: (id: Array<string>) => void;
+  addButton?: ({ table }: { table: TTable<TData> }) => React.ReactNode;
   header?: ({ table }: { table: TTable<TData> }) => React.ReactNode;
   footer?: ({ table }: { table: TTable<TData> }) => React.ReactNode;
   customFilter?: (row: any, filters: any) => boolean;
@@ -50,6 +51,7 @@ export function DataTable<TData, TValue>({
   headerClassName,
   paginated = true,
   onDelete,
+  addButton,
   header,
   footer,
   className,
@@ -112,18 +114,20 @@ export function DataTable<TData, TValue>({
     <React.Fragment>
       <div
         className={cn(
-          "w-full  border border-border rounded-lg shadow-md",
+          "w-full  border border-border rounded-lg shadow-md flex-1",
           className
         )}
       >
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4 p-4">
           {(title || Object.keys(table.getState().rowSelection).length > 0) && (
             <div className="flex flex-col lg:flex-row items-center gap-2">
+              {addButton && addButton({ table })}
               {Object.keys(table.getState().rowSelection).length > 0 && (
                 <DataTableDeleteColumn
                   mode="bulk"
                   table={table}
                   onDelete={onDelete}
+                  selectedKey="_id"
                 />
               )}
               {title && <h2 className="font-semibold">{title}</h2>}
@@ -183,7 +187,9 @@ export function DataTable<TData, TValue>({
                   <TableRow
                     key={row.id}
                     data-state={row.getIsSelected() ? "selected" : undefined}
-                    className={cn("border-b hover:bg-primary-25")}
+                    className={cn(
+                      "group border-b border-s border-s-transparent hover:!border-s data-[state=selected]:!border-s data-[state=selected]:border-s-primary-400 hover:border-s-primary-400  hover:bg-primary-25"
+                    )}
                   >
                     <TableCell className="text-center">
                       <Checkbox
@@ -197,7 +203,7 @@ export function DataTable<TData, TValue>({
                         key={cell.id}
                         data-id={cell.id}
                         className={cn(
-                          "whitespace-nowrap text-center",
+                          "whitespace-nowrap",
                           cell.column.id.includes("actions") &&
                             "w-10 bg-background sticky z-10 end-0"
                         )}

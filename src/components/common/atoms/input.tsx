@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@lib/utils";
 
 const inputVariants = cva(
-  "flex h-10 w-full text-sm rounded-lg  px-4 py-2.5 file:border-0 file:text-sm file:font-medium file:text-foreground placeholder:text-gray-400 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-gray-100 transition-all duration-200",
+  "flex h-10 w-full text-xs rounded-lg  px-4 py-2.5 file:border-0 file:text-sm file:font-medium file:text-foreground placeholder:text-gray-400 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-gray-100 transition-all duration-200",
   {
     variants: {
       variant: {

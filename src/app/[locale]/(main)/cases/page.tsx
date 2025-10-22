@@ -1,13 +1,13 @@
 import React from "react";
-import { ADMIN } from "@modules";
+import { NORMAL } from "@modules";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Organizations",
+  title: "Cases",
 };
 
 const page = () => {
-  return <ADMIN.Organizations />;
+  return <NORMAL.Cases />;
 };
 
 export default page;

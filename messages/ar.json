@@ -1,6 +1,11 @@
 {
   "common": {
-    "add": "إضافة"
+    "clipboard": {
+      "title": "تم النسخ",
+      "description": "تم نسخ النص بنجاح.",
+      "error_title": "فشل النسخ",
+      "error_description": "حدث خطأ أثناء نسخ النص."
+    }
   },
   "under-construction": {
     "title": "قيد الإنشاء",

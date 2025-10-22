@@ -662,8 +662,16 @@ const extToMimeType = (ext: string): string | null => {
       return null;
   }
 };
-
+const getCssVariable = (variable: string) => {
+  if (typeof window !== "undefined") {
+    return window
+      .getComputedStyle(document.documentElement)
+      .getPropertyValue(variable);
+  }
+  return "no color";
+};
 export const Utils = {
+  getCssVariable,
   convertExtensionsToAcceptObject,
   extToMimeType,
   encode,

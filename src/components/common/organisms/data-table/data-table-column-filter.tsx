@@ -311,14 +311,26 @@ export const DataTableFilters: React.FC<Props> = ({
       })}
 
       <div className="flex flex-wrap  items-center gap-2 justify-between">
-        <div className="flex flex-wrap items-center gap-2">
-          <Button variant="primary" onClick={() => addFilter()}>
+        <div className="flex flex-wrap items-center gap-4">
+          <Button
+            variant="link"
+            className="text-primary-400 hover:text-primary-300 hover:no-underline p-0"
+            onClick={() => addFilter()}
+          >
             <Plus size={14} /> {t("add_filter")}
           </Button>
-          <Button variant="error" onClick={clearFilters}>
+          <Button
+            variant="link"
+            className="text-primary-400 hover:text-primary-300 hover:no-underline p-0"
+            onClick={clearFilters}
+          >
             {t("clear_filters")}
           </Button>
-          <Button variant="primary" onClick={() => onApply(items)}>
+          <Button
+            variant="link"
+            className="text-primary-400 hover:text-primary-300 hover:no-underline p-0"
+            onClick={() => onApply(items)}
+          >
             {t("apply_filters")}
           </Button>
         </div>

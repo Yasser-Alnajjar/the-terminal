@@ -1,6 +1,11 @@
 {
   "common": {
-    "add": "Add"
+    "clipboard": {
+      "title": "Copied to clipboard",
+      "description": "The text has been successfully copied.",
+      "error_title": "Copy failed",
+      "error_description": "An error occurred while copying text."
+    }
   },
   "under-construction": {
     "title": "Under Construction",

@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
-import { Cairo, Poppins } from "next/font/google";
+import { Cairo, Inter } from "next/font/google";
 import { ThemeProvider, Toaster } from "@components";
 import { routing } from "@navigation";
 import AuthProvider from "src/AuthProvider";
@@ -10,7 +10,7 @@ const cairo = Cairo({
   weight: ["200", "300", "400", "500", "600", "700", "800", "900", "1000"],
   subsets: ["arabic"],
 });
-const poppins = Poppins({
+const inter = Inter({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
 });
@@ -44,7 +44,7 @@ export default async function LocaleLayout(props: Props) {
       >
         <body
           dir={layoutDir}
-          className={locale === "ar" ? cairo.className : poppins.className}
+          className={locale === "ar" ? cairo.className : inter.className}
         >
           <NextIntlClientProvider locale={locale} messages={messages}>
             <AuthProvider>

@@ -10,8 +10,14 @@ import {
 } from "@components";
 import { useStore } from "@hooks";
 
-export const OrganizationList = ({ data }: { data: any[] }) => {
-  const columns = useOrganizationColumns();
+export const OrganizationList = ({
+  data,
+  users,
+}: {
+  data: any[];
+  users: any[];
+}) => {
+  const columns = useOrganizationColumns({ users });
   const { showFilter } = useStore((state) => ({
     showFilter: state.showFilter,
   }));

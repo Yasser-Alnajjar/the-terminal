@@ -3,3 +3,5 @@ export * from "./data-table";
 export * from "./dynamic-tabs-slider";
 export * from "./stepper-form";
 export * from "./header";
+export * from "./permissions/PermissionsPopover";
+export * from "./formik-field";

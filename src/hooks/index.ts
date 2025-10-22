@@ -8,3 +8,4 @@ export { useTranslate } from "./useTranslate";
 export { useMediaQuery } from "./use-media-query";
 export { useBuildYupSchema, type ISchema } from "./buildYupSchema";
 export { useStore } from "./useStore";
+export { useClipboard } from "./use-clipboard";

@@ -20,6 +20,7 @@ import { Table } from "@tanstack/react-table";
 import { FileDown } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useToast } from "@hooks";
 
 interface DataTableExportDialogProps<TData> {
   table: Table<TData>;
@@ -36,7 +37,7 @@ export function ExportDialog<TData>({
   const locale = useLocale();
   const t = useTranslations("dataTable");
   const pathname = usePathname();
-
+  const { toast } = useToast();
   const fields =
     table.getAllColumns().map((col) => ({
       key: col.id,
@@ -77,7 +78,11 @@ export function ExportDialog<TData>({
       link.download = fileName;
       link.click();
     }
-
+    toast({
+      title: "Success",
+      description:
+        "Export has started ! Your data should be available shortly.",
+    });
     setOpen(false);
   };
 

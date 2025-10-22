@@ -13,10 +13,11 @@ import {
 import { useIsMobile } from "@hooks";
 import { Folder } from "lucide-react";
 import { ISidebarItem } from "./app-sidebar";
-import { Link } from "@navigation";
+import { Link, usePathname } from "@navigation";
 
 export function NavMain({ items }: { items: Array<ISidebarItem> }) {
   const isMobile = useIsMobile();
+  const pathname = usePathname();
 
   return (
     <SidebarGroup>
@@ -30,7 +31,11 @@ export function NavMain({ items }: { items: Array<ISidebarItem> }) {
                 value={item.title}
               >
                 <SidebarMenuItem className="flex-1">
-                  <SidebarMenuButton tooltip={item.title} asChild>
+                  <SidebarMenuButton
+                    tooltip={item.title}
+                    asChild
+                    isActive={pathname === item.url}
+                  >
                     <AccordionTrigger>
                       {item.icon && item.icon}
                       {item.title}
@@ -54,7 +59,11 @@ export function NavMain({ items }: { items: Array<ISidebarItem> }) {
               </AccordionItem>
             ) : (
               <SidebarMenuItem className="flex-1" key={item.title}>
-                <SidebarMenuButton tooltip={item.title} asChild>
+                <SidebarMenuButton
+                  tooltip={item.title}
+                  asChild
+                  isActive={pathname === item.url}
+                >
                   <Link href={item.url}>
                     {item.icon && item.icon}
                     {item.title}

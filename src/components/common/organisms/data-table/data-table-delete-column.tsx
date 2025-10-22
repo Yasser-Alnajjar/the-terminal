@@ -22,6 +22,7 @@ import { Table, Row } from "@tanstack/react-table";
 
 interface CommonDeleteProps {
   onDelete?: (ids: string[]) => void;
+  selectedKey: string;
   triggerClassName?: string;
   triggerType?: "button" | "menu";
 }
@@ -50,10 +51,12 @@ export function DataTableDeleteColumn<TData>(
     if (props.mode === "bulk") {
       const selectedIds = props.table
         .getSelectedRowModel()
-        .rows.map((r) => (r.original as any)?.id ?? "");
+        .rows.map((r) => (r.original as any)[props.selectedKey as string]);
       props.onDelete?.(selectedIds);
     } else {
-      props.onDelete?.([(props.row.original as any)?.id]);
+      props.onDelete?.([
+        (props.row.original as any)[props.selectedKey as string],
+      ]);
     }
   };
 
@@ -71,7 +74,6 @@ export function DataTableDeleteColumn<TData>(
     ) : (
       <Button variant="error" size="default">
         <Trash2 size={16} />
-        {t("delete")}
       </Button>
     );
 
@@ -93,9 +95,11 @@ export function DataTableDeleteColumn<TData>(
           <AlertDialogAction asChild>
             <Button
               variant="error"
-              className="bg-transparent border-0 rounded-full p-0 size-6"
+              size={"icon"}
+              className="rounded-full border-0"
+              aria-label="Close"
             >
-              <X size={26} />
+              <X size={16} />
             </Button>
           </AlertDialogAction>
         </AlertDialogHeader>
