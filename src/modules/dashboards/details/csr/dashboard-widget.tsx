@@ -226,7 +226,7 @@ export function DashboardWidget({
     }));
 
     return (
-      <div className="border bg-background border-border rounded-lg overflow-hidden h-full">
+      <div className="border bg-background border-border rounded-lg  h-full">
         <div className="flex items-center justify-between border-b border-border bg-muted p-2">
           <h3 className="text-sm font-medium flex items-center gap-2">
             {items.find((i) => i.type === type)?.icon} {title}
@@ -247,7 +247,7 @@ export function DashboardWidget({
   }
   if (!echartOptions) {
     return (
-      <div className="border bg-background border-border rounded-lg overflow-hidden h-full">
+      <div className="border bg-background border-border rounded-lg  h-full">
         <h3 className="text-sm font-medium p-2 bg-muted flex items-center gap-2">
           {items.find((i) => i.type === type)?.icon} {title}
         </h3>
@@ -256,7 +256,7 @@ export function DashboardWidget({
   }
   // Chart Widgets
   return (
-    <div className="w-full border bg-background border-border rounded-lg overflow-hidden h-full">
+    <div className="w-full border bg-background border-border rounded-lg  h-full">
       <div className="flex items-center justify-between border-b border-border bg-muted p-2">
         <h3 className="text-sm font-medium flex items-center gap-2">
           {items.find((i) => i.type === type)?.icon} {title}

@@ -1,4 +1,4 @@
-import React from "react";
+import { Suspense } from "react";
 import { Dashboard } from "../csr";
 import data from "public/dashboards.json";
 

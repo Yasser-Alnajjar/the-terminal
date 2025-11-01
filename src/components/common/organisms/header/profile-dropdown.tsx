@@ -53,7 +53,7 @@ export const ProfileDropdown = ({ className }: { className?: string }) => {
                 {session?.user?.name}
               </span>
               <span className="text-muted-foreground truncate text-xs">
-                {session?.user?._createdBy}
+                {session?.user?.email}
               </span>
             </div>
           </div>

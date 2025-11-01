@@ -1,13 +1,11 @@
-/** @type {import('next').NextConfig} */
 import nextIntl from "next-intl/plugin";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-import withBundleAnalyzer from "@next/bundle-analyzer";
-import { NextConfig } from "next";
+// import withBundleAnalyzer from "@next/bundle-analyzer";
 
-const bundleAnalyzer = withBundleAnalyzer({
-  enabled: process.env.ANALYZE === "true",
-});
+// const bundleAnalyzer = withBundleAnalyzer({
+//   enabled: process.env.ANALYZE === "true",
+// });
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -20,7 +18,7 @@ const resolveSassPaths = () => {
   return sassPaths;
 };
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   productionBrowserSourceMaps: true,
   output: "standalone",
   transpilePackages: ["three"],
@@ -47,7 +45,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  reactCompiler: true,
+  cacheComponents: true,
+  experimental: {
+    turbopackFileSystemCacheForDev: true,
+  },
 };
 
 const withNextIntl = nextIntl("./src/i18n.ts");
-export default bundleAnalyzer(withNextIntl(nextConfig));
+export default withNextIntl(nextConfig);
