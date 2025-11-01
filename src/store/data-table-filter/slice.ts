@@ -30,7 +30,9 @@ export const filterSlice: StateCreator<DataTableFiltersState> = (set, get) => ({
       ) {
         return state;
       }
-
+      setTimeout(() => {
+        state.setShowFilter(true);
+      }, 300);
       return { items: [...state.items, newFilter] };
     }),
 

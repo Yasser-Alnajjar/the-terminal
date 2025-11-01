@@ -1,8 +1,9 @@
 import React from "react";
 
 export interface IFieldOption {
-  label: string;
+  label: string | React.ReactNode;
   value: string | any;
+  itemClassName?: string;
 }
 
 export interface IFieldConfig {
@@ -34,6 +35,8 @@ export interface IFieldConfig {
     | "table"
     | "checkbox"
     | "phone"
+    | "editor"
+    | "datetime"
     | "array"
     | "custom";
   [key: string]: any;

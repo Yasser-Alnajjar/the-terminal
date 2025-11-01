@@ -7,7 +7,6 @@ export interface FilterOption {
 
 export interface FilterConfig {
   id: string;
-  label: string;
   type: FieldType;
   options?: FilterOption[];
 }

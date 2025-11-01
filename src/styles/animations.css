@@ -688,3 +688,19 @@
 .animation-pop {
   animation: pop 0.25s ease-out;
 }
+
+.animation-hide {
+  animation: hide 0.3s forwards;
+}
+
+@keyframes hide {
+  0% {
+    width: 100%;
+    opacity: 1;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+    display: none;
+  }
+}

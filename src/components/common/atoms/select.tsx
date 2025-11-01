@@ -48,7 +48,7 @@ const SelectTrigger = React.forwardRef<
       <SelectPrimitive.Trigger
         ref={ref}
         className={cn(
-          "peer group flex border text-xs disabled:[&~span]:hidden border-border disabled:bg-gray-100 rounded-ss-lg rounded-se-lg  w-full items-center justify-between bg-transparent px-4 py-1.5 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 disabled:rounded-lg outline-0",
+          "peer group flex border-b text-xs disabled:[&~span]:hidden border-border disabled:bg-gray-100 rounded-ss-lg rounded-se-lg  w-full items-center justify-between bg-transparent px-4 py-1.5 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 disabled:rounded-lg outline-0",
           className,
           colorTextMap[variant || "default"]
         )}

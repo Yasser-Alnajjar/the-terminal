@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { ChevronDown, X } from "lucide-react";
+import { useState, useRef } from "react";
+import { Check } from "lucide-react";
 import { cn } from "@lib/utils";
-import { Button } from "./button";
+import { inputVariants } from "@components";
 
 interface TagSelectProps {
-  options: string[];
   placeholder?: string;
   className?: string;
   onChange?: (selected: string[]) => void;
@@ -14,108 +13,113 @@ interface TagSelectProps {
 }
 
 export function TagSelect({
-  options,
-  placeholder = "Select...",
+  placeholder = "Add or select...",
   onChange,
   className,
   value = [],
 }: TagSelectProps) {
   const [selected, setSelected] = useState<string[]>(value);
-  const [expanded, setExpanded] = useState(false);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [query, setQuery] = useState("");
 
-  const unselected = options.filter((o) => !selected.includes(o));
+  const [showDropdown, setShowDropdown] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSelect = (value: string) => {
-    const updated = [...selected, value];
+  const handleAddNew = () => {
+    const trimmed = query.trim();
+    if (trimmed && !selected.includes(trimmed)) {
+      const updated = [...selected, trimmed];
+      setSelected(updated);
+      onChange?.(updated);
+    }
+    setQuery("");
+  };
+
+  const handleRemove = (tag: string) => {
+    const updated = selected.filter((t) => t !== tag);
     setSelected(updated);
     onChange?.(updated);
   };
 
-  const handleRemove = (value: string) => {
-    const updated = selected.filter((item) => item !== value);
-    setSelected(updated);
-    onChange?.(updated);
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleAddNew();
+    }
+    if (e.key === "Backspace" && query === "" && selected.length > 0) {
+      handleRemove(selected[selected.length - 1]);
+    }
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        wrapperRef.current &&
-        !wrapperRef.current.contains(event.target as Node)
-      ) {
-        setExpanded(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const handleFocus = () => {
+    setTimeout(() => setShowDropdown(true), 50);
+  };
+
+  const handleBlur = () => {
+    setTimeout(() => setShowDropdown(false), 150);
+  };
 
   return (
-    <div ref={wrapperRef}>
-      <input
-        type="text"
-        hidden
-        readOnly
-        aria-hidden
-        value={selected.join(",")}
-      />
-
+    <div className={cn("relative w-full", className)}>
       <div
         className={cn(
-          "border border-border rounded-lg bg-background min-h-[40px] flex flex-col justify-center  cursor-pointer",
-          className
+          inputVariants(),
+          "h-auto py-1.5 flex flex-wrap items-center gap-1 cursor-text"
         )}
-        onClick={() => setExpanded((prev) => !prev)}
+        onClick={() => inputRef.current?.focus()}
       >
-        <div className="flex items-center justify-between gap-2 px-3 py-2">
-          <div className="flex items-center flex-wrap gap-2 text-sm">
-            {selected.length === 0 ? (
-              <p className="text-sm font-semibold select-none">{placeholder}</p>
-            ) : (
-              selected.map((tag, index) => (
-                <div
-                  key={index}
-                  className="select-none capitalize bg-gray-200 px-2 py-1 text-sm font-medium rounded-full flex items-center gap-1"
-                >
-                  <span>{tag}</span>
-                  <Button
-                    variant="ghost"
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleRemove(tag);
-                    }}
-                    className="size-4 text-sm p-0 text-red-500 hover:text-red-500"
-                  >
-                    <X className="size-3" />
-                  </Button>
-                </div>
-              ))
-            )}
+        {selected.map((tag, index) => (
+          <div
+            key={index}
+            className="cursor-pointer flex items-center gap-1 bg-primary-25 hover:bg-primary-25 text-primary-400 px-2 py-0.5 rounded-full text-sm font-medium"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleRemove(tag);
+            }}
+          >
+            {tag}
           </div>
-          <ChevronDown size={16} />
-        </div>
-        {expanded && (
-          <ul className="overflow-auto h-52" role="listbox">
-            {unselected.length === 0 ? (
-              <li className="text-center text-sm px-2 py-6">No items left</li>
-            ) : (
-              unselected.map((tag, index) => (
-                <li
-                  key={index}
-                  role="option"
-                  aria-selected={false}
-                  className="select-none capitalize hover:cursor-pointer hover:bg-gray-200 hover:p-2 hover:rounded-lg mx-5 text-sm font-semibold mb-2"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleSelect(tag);
-                  }}
-                >
-                  {tag}
-                </li>
-              ))
-            )}
+        ))}
+
+        <input
+          ref={inputRef}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={handleKeyDown}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          placeholder={selected.length === 0 ? placeholder : ""}
+          className="flex-1 bg-transparent outline-none border-none text-sm p-0"
+        />
+      </div>
+
+      {/* Smooth Popover */}
+      <div
+        className={cn(
+          "absolute left-0 top-full mt-1 w-full max-h-48 bg-background overflow-auto border border-border rounded-md shadow-md z-50 p-2 transition-all duration-200 ease-out transform",
+          showDropdown
+            ? "opacity-100 translate-y-0 scale-100"
+            : "opacity-0 -translate-y-2 scale-95 pointer-events-none"
+        )}
+      >
+        {selected.length === 0 ? (
+          <div className="text-sm text-muted-foreground text-center py-2">
+            {query.trim() ? "Press Enter to add new" : "No items found"}
+          </div>
+        ) : (
+          <ul className="space-y-1">
+            {selected.map((tag, index) => (
+              <li
+                key={index}
+                className="flex items-center justify-between capitalize text-sm font-medium px-2 py-1 rounded-md bg-primary-25 hover:bg-primary-50 text-primary-400 cursor-pointer transition-colors"
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  handleRemove(tag);
+                }}
+              >
+                <span>{tag}</span>
+                <Check size={14} />
+              </li>
+            ))}
           </ul>
         )}
       </div>

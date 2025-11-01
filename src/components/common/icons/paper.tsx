@@ -16,9 +16,9 @@ export const Paper = ({
       xlinkHref="http://www.w3.org/1999/xlink"
       width={width}
       height={height}
+      className={cn("object-contain", className)}
       viewBox="0 0 68 68"
       fill="none"
-      className={cn("object-contain", className)}
     >
       <rect width={width} height={height} fill="url(#pattern0_4460_33087)" />
       <defs>

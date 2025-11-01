@@ -1,13 +1,13 @@
 import React from "react";
-import { ADMIN } from "@modules";
+import { Dashboards } from "@modules";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Organizations",
+  title: "Dashboards",
 };
 
 const page = () => {
-  return <ADMIN.Organizations />;
+  return <Dashboards.List />;
 };
 
 export default page;

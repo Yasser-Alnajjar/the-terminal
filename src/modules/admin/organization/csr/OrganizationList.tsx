@@ -26,17 +26,15 @@ export const OrganizationList = ({
     <>
       <DataTableFilters
         filters={[
-          { id: "name", label: "Name", type: "text" },
-          { id: "description", label: "Description", type: "text" },
-          { id: "createdAt", label: "Created Date", type: "date" },
+          { id: "name", type: "text" },
+          { id: "description", type: "text" },
+          { id: "createdAt", type: "date" },
           {
             id: "locked",
-            label: "Locked",
             type: "boolean",
           },
           {
             id: "_createdBy",
-            label: "Created By",
             type: "select",
             options: [
               { value: "admin", label: "Default admin user" },
@@ -52,7 +50,6 @@ export const OrganizationList = ({
       <DataTable
         columns={columns}
         data={data}
-        onDelete={(ids) => console.log("bulk delete:", ids)}
         title="Organizations"
         header={({ table }) => (
           <>

@@ -1,0 +1,1119 @@
+[
+  {
+    "_id": "~8097976",
+    "_type": "Dashboard",
+    "_createdBy": "admin@thehive.local",
+    "_createdAt": 1760978734442,
+    "title": "Alerts statistics",
+    "group": "default",
+    "description": "Alerts statistics",
+    "status": "Shared",
+    "owner": "admin@thehive.local",
+    "definition": {
+      "period": "all",
+      "items": [
+        {
+          "type": "container",
+          "items": [
+            {
+              "options": {
+                "series": [
+                  {
+                    "agg": "count",
+                    "label": "Alerts created",
+                    "filters": [],
+                    "type": "area-spline",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "alert"
+                  }
+                ],
+                "query": {},
+                "interval": "1M",
+                "title": "Alerts creation",
+                "log": true
+              },
+              "id": "c8a1-1215-1f30-2cf0-54cf-7f05f3ba8289",
+              "type": "line"
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "options": {
+                "stacked": false,
+                "customize": [
+                  {
+                    "color": "#36cfc9",
+                    "name": "1",
+                    "label": "low"
+                  },
+                  {
+                    "color": "#ffa940",
+                    "name": "2",
+                    "label": "medium"
+                  },
+                  {
+                    "color": "#d64b36",
+                    "name": "3",
+                    "label": "high"
+                  },
+                  {
+                    "color": "#871400",
+                    "name": "4",
+                    "label": "critical"
+                  }
+                ],
+                "field": "severity",
+                "names": {},
+                "query": {},
+                "filters": [],
+                "entity": "alert",
+                "title": "Alerts per severity",
+                "periodDateField": "_createdAt"
+              },
+              "id": "3351-0f24-b422-e524-442d-e7a9e01463a2",
+              "type": "donut"
+            },
+            {
+              "options": {
+                "stacked": false,
+                "field": "status",
+                "names": {},
+                "query": {},
+                "filters": [],
+                "entity": "alert",
+                "title": "Alerts per status",
+                "periodDateField": "_createdAt",
+                "customize": [
+                  {
+                    "color": "#ffa940",
+                    "name": "InProgress",
+                    "label": "InProgress"
+                  },
+                  {
+                    "color": "#B1B1B1",
+                    "name": "Ignored",
+                    "label": "Ignored"
+                  },
+                  {
+                    "color": "#4a90e2",
+                    "name": "Imported",
+                    "label": "Imported"
+                  },
+                  {
+                    "color": "#B1B1B1",
+                    "name": "Duplicate",
+                    "label": "Duplicate"
+                  },
+                  {
+                    "color": "#d0021b",
+                    "name": "New",
+                    "label": "New"
+                  },
+                  {
+                    "color": "#52c41a",
+                    "name": "FalsePositive",
+                    "label": "FalsePositive"
+                  },
+                  {
+                    "color": "#ffa940",
+                    "name": "Pending",
+                    "label": "Pending"
+                  }
+                ]
+              },
+              "id": "0b59-ec63-4bee-6643-6ed1-54da44a60dac",
+              "type": "donut"
+            },
+            {
+              "options": {
+                "stacked": false,
+                "customize": [],
+                "field": "source",
+                "names": {},
+                "query": {},
+                "filters": [],
+                "entity": "alert",
+                "title": "Alerts per source",
+                "periodDateField": "_createdAt"
+              },
+              "id": "a258-3f5a-938b-0549-4852-489cbbc91590",
+              "type": "donut"
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "options": {
+                "series": [
+                  {
+                    "agg": "count",
+                    "label": "Time to acknowledge >= 2 Days",
+                    "filters": [
+                      {
+                        "field": "timeToAcknowledgeInDays",
+                        "values": 2,
+                        "type": "number",
+                        "operator": "gte"
+                      }
+                    ],
+                    "threshold": 5,
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "orientation": "max"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "Time to detect >= 2 Days",
+                    "filters": [
+                      {
+                        "field": "timeToDetectInDays",
+                        "values": 2,
+                        "type": "number",
+                        "operator": "gte"
+                      }
+                    ],
+                    "threshold": 5,
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "orientation": "max"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "Time to qualify >= 2 Days",
+                    "filters": [
+                      {
+                        "field": "timeToQualifyInDays",
+                        "values": 2,
+                        "type": "number",
+                        "operator": "gte"
+                      }
+                    ],
+                    "threshold": 5,
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "orientation": "max"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "Time to triage >= 2 Days",
+                    "filters": [
+                      {
+                        "field": "timeToTriageInDays",
+                        "values": 2,
+                        "type": "number",
+                        "operator": "gte"
+                      }
+                    ],
+                    "threshold": 5,
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "orientation": "max"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "Severity High or Critical",
+                    "filters": [
+                      {
+                        "field": "severity",
+                        "values": [3, 4],
+                        "type": "number",
+                        "operator": "any"
+                      }
+                    ],
+                    "threshold": 5,
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "orientation": "max"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "Imported as case",
+                    "filters": [
+                      {
+                        "field": "imported",
+                        "type": "boolean",
+                        "operator": "true"
+                      }
+                    ],
+                    "dateField": "_createdAt",
+                    "periodDateField": "_createdAt"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "False positive",
+                    "filters": [
+                      {
+                        "field": "status",
+                        "values": ["FalsePositive"],
+                        "type": "enumeration",
+                        "operator": "any"
+                      }
+                    ],
+                    "dateField": "_createdAt",
+                    "periodDateField": "_createdAt"
+                  }
+                ],
+                "query": {},
+                "filters": [],
+                "entity": "alert",
+                "title": "Alerts KPI",
+                "periodDateField": "_createdAt"
+              },
+              "id": "1ab7-6014-d31b-9936-c4e4-28ac8a39791a",
+              "type": "counter"
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "options": {
+                "stacked": false,
+                "field": "tlp",
+                "names": {},
+                "query": {},
+                "filters": [],
+                "entity": "alert",
+                "title": "Alerts TLP",
+                "periodDateField": "_createdAt"
+              },
+              "id": "e055-953f-e0f4-e0a0-9b4c-582318024505",
+              "type": "radar"
+            },
+            {
+              "options": {
+                "query": {},
+                "warning": 400,
+                "filters": [
+                  {
+                    "field": "_createdAt",
+                    "type": "date",
+                    "operator": "lastyear"
+                  }
+                ],
+                "entity": "alert",
+                "title": "Analysts workload",
+                "periodDateField": "_createdAt",
+                "safe": 250,
+                "critical": 600
+              },
+              "id": "a9f4-1be5-9b6a-8f31-d277-38116c835536",
+              "type": "gauge"
+            },
+            {
+              "options": {
+                "stacked": false,
+                "field": "pap",
+                "names": {},
+                "query": {},
+                "filters": [],
+                "entity": "alert",
+                "title": "Alerts PAP",
+                "periodDateField": "_createdAt"
+              },
+              "id": "8201-8fd5-77d4-8845-681c-6d3391b49d75",
+              "type": "radar"
+            }
+          ]
+        }
+      ]
+    },
+    "writable": true,
+    "version": 1
+  },
+  {
+    "_id": "~4202688",
+    "_type": "Dashboard",
+    "_createdBy": "admin@thehive.local",
+    "_createdAt": 1760978734476,
+    "title": "Cases statistics",
+    "group": "default",
+    "description": "Cases statistics",
+    "status": "Shared",
+    "owner": "admin@thehive.local",
+    "definition": {
+      "period": "all",
+      "items": [
+        {
+          "type": "container",
+          "items": [
+            {
+              "options": {
+                "series": [
+                  {
+                    "agg": "count",
+                    "label": "New cases",
+                    "color": "#4a90e2",
+                    "filters": [],
+                    "type": "area-spline",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "case"
+                  }
+                ],
+                "query": {},
+                "interval": "1M",
+                "title": "Cases creation"
+              },
+              "id": "2888-e05f-ca71-f36b-aec9-cfcc30f36637",
+              "type": "line"
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "options": {
+                "stacked": false,
+                "customize": [
+                  {
+                    "color": "#36cfc9",
+                    "name": "1",
+                    "label": "low"
+                  },
+                  {
+                    "color": "#ffa940",
+                    "name": "2",
+                    "label": "medium"
+                  },
+                  {
+                    "color": "#d64b36",
+                    "name": "3",
+                    "label": "high"
+                  },
+                  {
+                    "color": "#871400",
+                    "name": "4",
+                    "label": "critical"
+                  }
+                ],
+                "field": "severity",
+                "names": {},
+                "query": {},
+                "filters": [],
+                "entity": "case",
+                "title": "Cases per severity",
+                "periodDateField": "_createdAt"
+              },
+              "id": "b361-8744-9a9c-0849-9a89-04fc62e1c84e",
+              "type": "donut"
+            },
+            {
+              "options": {
+                "series": [
+                  {
+                    "agg": "count",
+                    "label": "Cases with handling duration > 15 days",
+                    "filters": [
+                      {
+                        "field": "computed.handlingDurationInDays",
+                        "values": 15,
+                        "type": "number",
+                        "operator": "gt"
+                      }
+                    ],
+                    "threshold": 10,
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "orientation": "max"
+                  },
+                  {
+                    "agg": "count",
+                    "field": "timeToResolveInDays",
+                    "label": "Cases with triage > 2 days",
+                    "filters": [
+                      {
+                        "field": "timeToTriageInDays",
+                        "values": 2,
+                        "type": "number",
+                        "operator": "gt"
+                      }
+                    ],
+                    "threshold": 10,
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "orientation": "max"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "Cases with action required",
+                    "filters": [
+                      {
+                        "field": "actionRequired",
+                        "type": "boolean",
+                        "operator": "true"
+                      }
+                    ],
+                    "threshold": 10,
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "orientation": "max"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "Cases of severity high or critical",
+                    "filters": [
+                      {
+                        "field": "severity",
+                        "values": [3, 4],
+                        "type": "number",
+                        "operator": "any"
+                      }
+                    ],
+                    "threshold": 5,
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "orientation": "max"
+                  }
+                ],
+                "query": {},
+                "filters": [],
+                "entity": "case",
+                "title": "Cases KPI",
+                "periodDateField": "_createdAt"
+              },
+              "id": "24a4-3aae-c697-62de-e676-403bebe1a559",
+              "type": "counter"
+            },
+            {
+              "options": {
+                "stacked": false,
+                "field": "assignee",
+                "names": {},
+                "query": {},
+                "filters": [
+                  {
+                    "field": "stage",
+                    "values": ["New", "InProgress"],
+                    "type": "enumeration",
+                    "operator": "any"
+                  }
+                ],
+                "entity": "case",
+                "title": "Open cases owners",
+                "periodDateField": "_createdAt"
+              },
+              "id": "f002-b402-ab8b-1310-20ab-174f1aed9d29",
+              "type": "donut"
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "options": {
+                "stacked": true,
+                "customize": [
+                  {
+                    "color": "#36cfc9",
+                    "name": "1",
+                    "label": "low"
+                  },
+                  {
+                    "color": "#ffa940",
+                    "name": "2",
+                    "label": "medium"
+                  },
+                  {
+                    "color": "#d64b36",
+                    "name": "3",
+                    "label": "high"
+                  },
+                  {
+                    "color": "#871400",
+                    "name": "4",
+                    "label": "critical"
+                  }
+                ],
+                "field": "severity",
+                "names": {},
+                "query": {},
+                "interval": "1M",
+                "filters": [],
+                "title": "Case severity over time",
+                "periodDateField": "_createdAt",
+                "log": false,
+                "dateField": "_createdAt",
+                "entity": "case"
+              },
+              "id": "8ee0-a439-a634-286b-b6ae-91599af82feb",
+              "type": "bar"
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "options": {
+                "stacked": false,
+                "field": "tlp",
+                "names": {},
+                "query": {},
+                "filters": [],
+                "entity": "case",
+                "title": "Cases per TLP",
+                "periodDateField": "_createdAt"
+              },
+              "id": "303c-1338-fbed-c4dc-406e-3a786ca132bc",
+              "type": "radar"
+            },
+            {
+              "options": {
+                "stacked": false,
+                "customize": [],
+                "field": "impactStatus",
+                "names": {},
+                "query": {},
+                "filters": [],
+                "entity": "case",
+                "title": "Cases impacts",
+                "periodDateField": "_createdAt"
+              },
+              "id": "a809-e601-f3a8-c5c4-5291-636604e33f6c",
+              "type": "donut"
+            },
+            {
+              "options": {
+                "stacked": false,
+                "field": "pap",
+                "names": {},
+                "query": {},
+                "filters": [],
+                "entity": "case",
+                "title": "Cases per PAP",
+                "periodDateField": "_createdAt"
+              },
+              "id": "072e-ebb7-74c0-5300-a526-0c8afcd35797",
+              "type": "radar"
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "options": {
+                "stacked": false,
+                "series": [
+                  {
+                    "agg": "count",
+                    "label": "Case with handling duration >= 10 days",
+                    "filters": [
+                      {
+                        "field": "computed.handlingDurationInDays",
+                        "values": 10,
+                        "type": "number",
+                        "operator": "gte"
+                      }
+                    ],
+                    "type": "bar",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "case"
+                  }
+                ],
+                "query": {},
+                "interval": "1M",
+                "title": "Cases with handling duration >= 10 days per month",
+                "log": false
+              },
+              "id": "c0bd-7da0-9602-8087-dc02-409f4ad3d7c6",
+              "type": "line"
+            }
+          ]
+        }
+      ]
+    },
+    "writable": true,
+    "version": 1
+  },
+  {
+    "_id": "~3780768",
+    "_type": "Dashboard",
+    "_createdBy": "admin@thehive.local",
+    "_createdAt": 1760978734504,
+    "title": "Observables statistics",
+    "group": "default",
+    "description": "Observables statistics",
+    "status": "Shared",
+    "owner": "admin@thehive.local",
+    "definition": {
+      "period": "all",
+      "items": [
+        {
+          "type": "container",
+          "items": [
+            {
+              "options": {
+                "series": [
+                  {
+                    "agg": "count",
+                    "label": "IOC",
+                    "color": "#d0021b",
+                    "filters": [
+                      {
+                        "field": "ioc",
+                        "type": "boolean",
+                        "operator": "true"
+                      }
+                    ],
+                    "type": "area-spline",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "observable"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "Sighted",
+                    "color": "#4a90e2",
+                    "filters": [
+                      {
+                        "field": "sighted",
+                        "type": "boolean",
+                        "operator": "true"
+                      }
+                    ],
+                    "type": "area-spline",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "observable"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "Observables",
+                    "color": "#9013fe",
+                    "filters": [],
+                    "type": "area-spline",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "observable"
+                  }
+                ],
+                "query": {},
+                "interval": "1M",
+                "title": "Observables vs IOC vs Sighted over time",
+                "log": true
+              },
+              "id": "d6eb-5edd-993d-ad97-3696-3e61da9f3842",
+              "type": "line"
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "options": {
+                "stacked": false,
+                "customize": [],
+                "field": "dataType",
+                "names": {},
+                "query": {},
+                "filters": [],
+                "entity": "observable",
+                "title": "Observables per type",
+                "periodDateField": "_createdAt"
+              },
+              "id": "29fe-b881-4b02-f4ea-e5ad-da378af0f3da",
+              "type": "donut"
+            },
+            {
+              "options": {
+                "series": [
+                  {
+                    "agg": "count",
+                    "label": "Observables count",
+                    "filters": [],
+                    "dateField": "_createdAt",
+                    "periodDateField": "_createdAt"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "IOC count",
+                    "filters": [
+                      {
+                        "field": "ioc",
+                        "type": "boolean",
+                        "operator": "true"
+                      }
+                    ],
+                    "dateField": "_createdAt",
+                    "periodDateField": "_createdAt"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "Sighted count",
+                    "filters": [
+                      {
+                        "field": "sighted",
+                        "type": "boolean",
+                        "operator": "true"
+                      }
+                    ],
+                    "dateField": "_createdAt",
+                    "periodDateField": "_createdAt"
+                  }
+                ],
+                "query": {},
+                "filters": [],
+                "entity": "observable",
+                "title": "Observables statistics",
+                "periodDateField": "_createdAt"
+              },
+              "id": "2eda-c804-fb08-5fd8-4171-7b3bf485ad8b",
+              "type": "counter"
+            },
+            {
+              "options": {
+                "stacked": false,
+                "customize": [
+                  {
+                    "color": "#dedede",
+                    "name": "0",
+                    "label": "clear"
+                  },
+                  {
+                    "color": "#52c41a",
+                    "name": "1",
+                    "label": "green"
+                  },
+                  {
+                    "color": "#ffa940",
+                    "name": "2",
+                    "label": "amber"
+                  },
+                  {
+                    "color": "#d77e15",
+                    "name": "3",
+                    "label": "amber+strict"
+                  },
+                  {
+                    "color": "#fa541c",
+                    "name": "4",
+                    "label": "red"
+                  }
+                ],
+                "field": "tlp",
+                "names": {},
+                "query": {},
+                "filters": [],
+                "entity": "observable",
+                "title": "Observables per TLP",
+                "periodDateField": "_createdAt"
+              },
+              "id": "9525-8675-2ecb-632c-5ca7-bb99b0d90bce",
+              "type": "donut"
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "options": {
+                "stacked": false,
+                "field": "tlp",
+                "names": {},
+                "query": {},
+                "filters": [],
+                "entity": "observable",
+                "title": "Observables TLP",
+                "periodDateField": "_createdAt"
+              },
+              "id": "0182-4800-ac89-d972-4345-77f6040b5270",
+              "type": "radar"
+            },
+            {
+              "options": {
+                "stacked": false,
+                "field": "pap",
+                "names": {},
+                "query": {},
+                "filters": [],
+                "entity": "observable",
+                "title": "Observables PAP",
+                "periodDateField": "_createdAt"
+              },
+              "id": "ba47-7769-5e4d-c88d-8b28-29b59cf280de",
+              "type": "radar"
+            }
+          ]
+        }
+      ]
+    },
+    "writable": true,
+    "version": 1
+  },
+  {
+    "_id": "~3981320",
+    "_type": "Dashboard",
+    "_createdBy": "admin@thehive.local",
+    "_createdAt": 1760978734487,
+    "title": "TTPs statistics",
+    "group": "default",
+    "description": "TTPs statistics",
+    "status": "Shared",
+    "owner": "admin@thehive.local",
+    "definition": {
+      "period": "all",
+      "items": [
+        {
+          "type": "container",
+          "items": [
+            {
+              "options": {
+                "stacked": false,
+                "series": [
+                  {
+                    "agg": "count",
+                    "label": "initial access",
+                    "filters": [
+                      {
+                        "field": "tactic",
+                        "values": ["initial-access"],
+                        "type": "string",
+                        "operator": "any"
+                      }
+                    ],
+                    "type": "line",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "procedure"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "command and control",
+                    "filters": [
+                      {
+                        "field": "tactic",
+                        "values": ["command-and-control"],
+                        "type": "string",
+                        "operator": "any"
+                      }
+                    ],
+                    "type": "line",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "procedure"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "collection",
+                    "filters": [
+                      {
+                        "field": "tactic",
+                        "values": ["collection"],
+                        "type": "string",
+                        "operator": "any"
+                      }
+                    ],
+                    "type": "line",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "procedure"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "defense evasion",
+                    "filters": [
+                      {
+                        "field": "tactic",
+                        "values": ["defense-evasion"],
+                        "type": "string",
+                        "operator": "any"
+                      }
+                    ],
+                    "type": "line",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "procedure"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "discovery",
+                    "filters": [
+                      {
+                        "field": "tactic",
+                        "values": ["discovery"],
+                        "type": "string",
+                        "operator": "any"
+                      }
+                    ],
+                    "type": "line",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "procedure"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "execution",
+                    "filters": [
+                      {
+                        "field": "tactic",
+                        "values": ["execution"],
+                        "type": "string",
+                        "operator": "any"
+                      }
+                    ],
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "procedure"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "impact",
+                    "filters": [
+                      {
+                        "field": "tactic",
+                        "values": ["impact"],
+                        "type": "string",
+                        "operator": "any"
+                      }
+                    ],
+                    "type": "line",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "procedure"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "persistence",
+                    "filters": [
+                      {
+                        "field": "tactic",
+                        "values": ["persistence"],
+                        "type": "string",
+                        "operator": "any"
+                      }
+                    ],
+                    "type": "line",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "procedure"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "lateral movement",
+                    "filters": [
+                      {
+                        "field": "tactic",
+                        "values": ["lateral-movement"],
+                        "type": "string",
+                        "operator": "any"
+                      }
+                    ],
+                    "type": "line",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "procedure"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "resource development",
+                    "filters": [
+                      {
+                        "field": "tactic",
+                        "values": ["resource-development"],
+                        "type": "string",
+                        "operator": "any"
+                      }
+                    ],
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "procedure"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "credential access",
+                    "filters": [
+                      {
+                        "field": "tactic",
+                        "values": ["credential-access"],
+                        "type": "string",
+                        "operator": "any"
+                      }
+                    ],
+                    "type": "line",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "procedure"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "reconnaissance",
+                    "filters": [
+                      {
+                        "field": "tactic",
+                        "values": ["reconnaissance"],
+                        "type": "string",
+                        "operator": "any"
+                      }
+                    ],
+                    "type": "line",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "procedure"
+                  },
+                  {
+                    "agg": "count",
+                    "label": "privilege escalation",
+                    "filters": [
+                      {
+                        "field": "tactic",
+                        "values": ["privilege-escalation"],
+                        "type": "string",
+                        "operator": "any"
+                      }
+                    ],
+                    "type": "line",
+                    "periodDateField": "_createdAt",
+                    "dateField": "_createdAt",
+                    "entity": "procedure"
+                  }
+                ],
+                "query": {},
+                "interval": "1w",
+                "title": "Tactics sighted over time",
+                "log": false
+              },
+              "id": "350d-1f36-7a4d-e144-5c45-cc02fb0e1ddb",
+              "type": "line"
+            }
+          ]
+        },
+        {
+          "type": "container",
+          "items": [
+            {
+              "options": {
+                "stacked": false,
+                "customize": [],
+                "field": "tactic",
+                "names": {},
+                "query": {},
+                "filters": [],
+                "entity": "procedure",
+                "title": "Tactics sighted",
+                "periodDateField": "_createdAt"
+              },
+              "id": "e9e6-7419-3906-6f8b-f136-51db708c9cef",
+              "type": "donut"
+            }
+          ]
+        }
+      ]
+    },
+    "writable": true,
+    "version": 1
+  }
+]

@@ -73,7 +73,6 @@ export const AddUserToOrganization = ({
     validationSchema,
     enableReinitialize: true,
   });
-  console.log(formik.errors);
 
   return (
     <Sheet>

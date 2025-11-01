@@ -69,7 +69,7 @@ function NavItemComponent({ item }: { item: INavItem }) {
             // data-active={true}
             // className="mb-0.5 last:mb-0 relative w-fit gap-1 rounded-sm p-2 text-xs transition-all outline-none focus-visible:ring-[3px] focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:ring-input/50 before:absolute before:start-0 before:bottom-0 before:transition-width before:duration-300 px-0 mx-1 before:h-px before:w-0 data-[active=true]:before:w-full before:bg-foreground text-nowrap"
           >
-            <span>{item.title}</span>
+            <span className="[collapsible=icon]:hidden">{item.title}</span>
           </Link>
         </SheetClose>
       </SidebarMenuButton>

@@ -1,0 +1,696 @@
+{
+  "Case": [
+    {
+      "id": "_id",
+      "type": "text"
+    },
+    {
+      "id": "_createdBy",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "_updatedBy",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "_createdAt",
+      "type": "date"
+    },
+    {
+      "id": "_updatedAt",
+      "type": "date"
+    },
+    {
+      "id": "number",
+      "type": "number"
+    },
+    {
+      "id": "title",
+      "type": "text"
+    },
+    {
+      "id": "description",
+      "type": "text"
+    },
+    {
+      "id": "severity",
+      "type": "number"
+    },
+    {
+      "id": "severityLabel",
+      "type": "text"
+    },
+    {
+      "id": "startDate",
+      "type": "date"
+    },
+    {
+      "id": "endDate",
+      "type": "date"
+    },
+    {
+      "id": "tags",
+      "type": "text[]"
+    },
+    {
+      "id": "flag",
+      "type": "boolean"
+    },
+    {
+      "id": "tlp",
+      "type": "number"
+    },
+    {
+      "id": "tlpLabel",
+      "type": "text"
+    },
+    {
+      "id": "pap",
+      "type": "number"
+    },
+    {
+      "id": "papLabel",
+      "type": "text"
+    },
+    {
+      "id": "status",
+      "type": "text"
+    },
+    {
+      "id": "stage",
+      "type": "text"
+    },
+    {
+      "id": "summary",
+      "type": "text"
+    },
+    {
+      "id": "impactStatus",
+      "type": "text"
+    },
+    {
+      "id": "assignee",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "newDate",
+      "type": "date"
+    },
+    {
+      "id": "inProgressDate",
+      "type": "date"
+    },
+    {
+      "id": "closedDate",
+      "type": "date"
+    },
+    {
+      "id": "alertDate",
+      "type": "date"
+    },
+    {
+      "id": "alertNewDate",
+      "type": "date"
+    },
+    {
+      "id": "alertInProgressDate",
+      "type": "date"
+    },
+    {
+      "id": "alertImportedDate",
+      "type": "date"
+    },
+    {
+      "id": "timeToDetect",
+      "type": "number"
+    },
+    {
+      "id": "timeToTriage",
+      "type": "number"
+    },
+    {
+      "id": "timeToQualify",
+      "type": "number"
+    },
+    {
+      "id": "timeToAcknowledge",
+      "type": "number"
+    },
+    {
+      "id": "timeToResolve",
+      "type": "number"
+    },
+    {
+      "id": "handlingDuration",
+      "type": "number"
+    },
+    {
+      "id": "customFields",
+      "type": "customFields"
+    }
+  ],
+  "Procedure": [
+    {
+      "id": "_id",
+      "type": "text"
+    },
+    {
+      "id": "_createdBy",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "_updatedBy",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "_createdAt",
+      "type": "date"
+    },
+    {
+      "id": "_updatedAt",
+      "type": "date"
+    },
+    {
+      "id": "description",
+      "type": "text"
+    },
+    {
+      "id": "occurDate",
+      "type": "date"
+    },
+    {
+      "id": "patternId",
+      "type": "text"
+    },
+    {
+      "id": "patternName",
+      "type": "text"
+    },
+    {
+      "id": "tactic",
+      "type": "text"
+    },
+    {
+      "id": "tacticLabel",
+      "type": "text"
+    }
+  ],
+  "User": [
+    {
+      "id": "_id",
+      "type": "text"
+    },
+    {
+      "id": "_createdBy",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "_updatedBy",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "_createdAt",
+      "type": "date"
+    },
+    {
+      "id": "_updatedAt",
+      "type": "date"
+    },
+    {
+      "id": "login",
+      "type": "text"
+    },
+    {
+      "id": "name",
+      "type": "text"
+    },
+    {
+      "id": "email",
+      "type": "text"
+    },
+    {
+      "id": "hasKey",
+      "type": "boolean"
+    },
+    {
+      "id": "hasPassword",
+      "type": "boolean"
+    },
+    {
+      "id": "hasMFA",
+      "type": "boolean"
+    },
+    {
+      "id": "locked",
+      "type": "boolean"
+    },
+    {
+      "id": "profile",
+      "type": "text"
+    },
+    {
+      "id": "permissions",
+      "type": "text[]"
+    },
+    {
+      "id": "organization",
+      "type": "text"
+    },
+    {
+      "id": "avatar",
+      "type": "text"
+    },
+    {
+      "id": "organizations",
+      "type": "organizationProfile[]"
+    },
+    {
+      "id": "type",
+      "type": "text"
+    },
+    {
+      "id": "defaultOrganization",
+      "type": "text"
+    }
+  ],
+  "Alert": [
+    {
+      "id": "_id",
+      "type": "text"
+    },
+    {
+      "id": "_createdBy",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "_updatedBy",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "_createdAt",
+      "type": "date"
+    },
+    {
+      "id": "_updatedAt",
+      "type": "date"
+    },
+    {
+      "id": "type",
+      "type": "text"
+    },
+    {
+      "id": "source",
+      "type": "text"
+    },
+    {
+      "id": "sourceRef",
+      "type": "text"
+    },
+    {
+      "id": "externalLink",
+      "type": "text"
+    },
+    {
+      "id": "title",
+      "type": "text"
+    },
+    {
+      "id": "description",
+      "type": "text"
+    },
+    {
+      "id": "severity",
+      "type": "number"
+    },
+    {
+      "id": "severityLabel",
+      "type": "text"
+    },
+    {
+      "id": "date",
+      "type": "date"
+    },
+    {
+      "id": "tags",
+      "type": "text[]"
+    },
+    {
+      "id": "tlp",
+      "type": "number"
+    },
+    {
+      "id": "tlpLabel",
+      "type": "text"
+    },
+    {
+      "id": "pap",
+      "type": "number"
+    },
+    {
+      "id": "papLabel",
+      "type": "text"
+    },
+    {
+      "id": "follow",
+      "type": "boolean"
+    },
+    {
+      "id": "caseTemplate",
+      "type": "text"
+    },
+    {
+      "id": "observableCount",
+      "type": "number"
+    },
+    {
+      "id": "caseId",
+      "type": "text"
+    },
+    {
+      "id": "status",
+      "type": "text"
+    },
+    {
+      "id": "stage",
+      "type": "text"
+    },
+    {
+      "id": "assignee",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "summary",
+      "type": "text"
+    },
+    {
+      "id": "newDate",
+      "type": "date"
+    },
+    {
+      "id": "inProgressDate",
+      "type": "date"
+    },
+    {
+      "id": "closedDate",
+      "type": "date"
+    },
+    {
+      "id": "importedDate",
+      "type": "date"
+    },
+    {
+      "id": "timeToDetect",
+      "type": "number"
+    },
+    {
+      "id": "timeToTriage",
+      "type": "number"
+    },
+    {
+      "id": "timeToQualify",
+      "type": "number"
+    },
+    {
+      "id": "timeToAcknowledge",
+      "type": "number"
+    },
+    {
+      "id": "customFields",
+      "type": "customFields"
+    }
+  ],
+  "Observable": [
+    {
+      "id": "dataType",
+      "type": "text"
+    },
+    {
+      "id": "data",
+      "type": "text"
+    },
+    {
+      "id": "attachment.name",
+      "type": "text"
+    },
+    {
+      "id": "tlp",
+      "type": "number"
+    },
+    {
+      "id": "tlpLabel",
+      "type": "text"
+    },
+    {
+      "id": "pap",
+      "type": "number"
+    },
+    {
+      "id": "papLabel",
+      "type": "text"
+    },
+    {
+      "id": "ioc",
+      "type": "boolean"
+    },
+    {
+      "id": "sighted",
+      "type": "boolean"
+    },
+    {
+      "id": "sightedAt",
+      "type": "date"
+    },
+    {
+      "id": "tags",
+      "type": "text[]"
+    },
+    {
+      "id": "message",
+      "type": "text"
+    },
+    {
+      "id": "_createdAt",
+      "type": "date"
+    },
+    {
+      "id": "_createdBy",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "_updatedAt",
+      "type": "date"
+    },
+    {
+      "id": "_updatedBy",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "startDate",
+      "type": "date"
+    },
+    {
+      "id": "ignoreSimilarity",
+      "type": "boolean"
+    },
+    {
+      "id": "attachment.contentType",
+      "type": "text"
+    },
+    {
+      "id": "attachment.hashes",
+      "type": "text[]"
+    },
+    {
+      "id": "attachment.id",
+      "type": "text"
+    },
+    {
+      "id": "attachment.size",
+      "type": "number"
+    }
+  ],
+  "Organization": [
+    {
+      "id": "_id",
+      "type": "text"
+    },
+    {
+      "id": "_createdBy",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "_updatedBy",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "_createdAt",
+      "type": "date"
+    },
+    {
+      "id": "_updatedAt",
+      "type": "date"
+    },
+    {
+      "id": "name",
+      "type": "text"
+    },
+    {
+      "id": "description",
+      "type": "text"
+    },
+    {
+      "id": "taskRule",
+      "type": "text"
+    },
+    {
+      "id": "observableRule",
+      "type": "text"
+    },
+    {
+      "id": "links",
+      "type": "organizationLink[]"
+    },
+    {
+      "id": "avatar",
+      "type": "text"
+    },
+    {
+      "id": "locked",
+      "type": "boolean"
+    }
+  ],
+  "Task": [
+    {
+      "id": "_id",
+      "type": "text"
+    },
+    {
+      "id": "_createdBy",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "_updatedBy",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "_createdAt",
+      "type": "date"
+    },
+    {
+      "id": "_updatedAt",
+      "type": "date"
+    },
+    {
+      "id": "title",
+      "type": "text"
+    },
+    {
+      "id": "group",
+      "type": "text"
+    },
+    {
+      "id": "description",
+      "type": "text"
+    },
+    {
+      "id": "status",
+      "type": "text"
+    },
+    {
+      "id": "flag",
+      "type": "boolean"
+    },
+    {
+      "id": "startDate",
+      "type": "date"
+    },
+    {
+      "id": "endDate",
+      "type": "date"
+    },
+    {
+      "id": "assignee",
+      "type": "select",
+      "options": [
+        { "value": "admin", "label": "Default admin user" },
+        { "value": "user1", "label": "User 1" }
+      ]
+    },
+    {
+      "id": "order",
+      "type": "number"
+    },
+    {
+      "id": "dueDate",
+      "type": "date"
+    },
+    {
+      "id": "mandatory",
+      "type": "boolean"
+    }
+  ]
+}

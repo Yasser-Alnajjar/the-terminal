@@ -25,7 +25,7 @@ const userRoutes = [
   "knowledge",
   "dashboards",
   "search",
-  "organizations",
+  "organization",
 ];
 
 const inputVariants = cva(

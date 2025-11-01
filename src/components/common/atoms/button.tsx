@@ -7,20 +7,20 @@ import { cn } from "@lib/utils";
 import { Link } from "@navigation";
 
 const buttonVariants = cva(
-  "border-border cursor-pointer transition-[scale,color,background] ease-out flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium focus-visible:outline-none  disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 disabled:opacity-50",
+  "border-border cursor-pointer transition-[scale,color,background] ease-in-out duration-300 flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium focus-visible:outline-none  disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 disabled:opacity-50",
   {
     variants: {
       variant: {
         default:
-          "bg-primary-400 text-white hover:bg-primary-300 active:bg-primary-500 hover:text-white focus:bg-primary-500 focus:text-white",
+          "bg-primary-400 text-white hover:bg-primary-300 active:bg-primary-500 hover:text-white focus-visible:bg-primary-500 focus-visible:text-white",
         success:
-          "bg-success-500 text-white hover:bg-success-400 active:bg-success-600 hover:text-white focus:bg-success-600 focus:text-white",
+          "bg-success-500 text-white hover:bg-success-400 active:bg-success-600 hover:text-white focus-visible:bg-success-600 focus-visible:text-white",
         error:
           "border bg-error-50 text-error-300 border-error-100  hover:bg-error-100 hover:bg-error-100 hover:text-error-400 hover:border-error-200/80",
         primary:
-          "bg-background border text-foreground hover:bg-primary-50 hover:text-primary-300 hover:border-primary-100  active:bg-primary-100 focus:bg-primary-100 focus:text-primary-400 focus:border-primary-200/80",
+          "bg-background border text-foreground hover:bg-primary-50 hover:text-primary-300 hover:border-primary-100  active:bg-primary-100 focus-visible:bg-primary-100 focus-visible:text-primary-400 focus-visible:border-primary-200/80",
         warning:
-          "bg-warning-500 text-white hover:bg-warning-400 active:bg-warning-600 hover:text-white focus:bg-warning-600 focus:text-white",
+          "bg-warning-500 text-white hover:bg-warning-400 active:bg-warning-600 hover:text-white focus-visible:bg-warning-600 focus-visible:text-white",
         outline:
           "text-gray-700 border bg-background hover:bg-gray-300/40  focus-visible:ring-gray-300",
         secondary:
@@ -30,13 +30,13 @@ const buttonVariants = cva(
         link: "underline-offset-4 hover:underline",
 
         "primary-outline":
-          "border border-primary-400 text-primary-400 hover:bg-primary-400 hover:text-white focus:bg-primary-400 focus:text-white",
+          "border border-primary-400 text-primary-400 hover:bg-primary-400 hover:text-white focus-visible:bg-primary-400 focus-visible:text-white",
         "error-outline":
-          "border border-error-500 text-error-500 hover:bg-error-500 hover:text-white focus:bg-error-500 focus:text-white",
+          "border border-error-500 text-error-500 hover:bg-error-500 hover:text-white focus-visible:bg-error-500 focus-visible:text-white",
         "warning-outline":
-          "border border-warning-500 text-warning-500 hover:bg-warning-500 hover:text-white focus:bg-warning-500 focus:text-white",
+          "border border-warning-500 text-warning-500 hover:bg-warning-500 hover:text-white focus-visible:bg-warning-500 focus-visible:text-white",
         "success-outline":
-          "border border-success-500 text-success-500 hover:bg-success-500 hover:text-white focus:bg-success-500 focus:text-white",
+          "border border-success-500 text-success-500 hover:bg-success-500 hover:text-white focus-visible:bg-success-500 focus-visible:text-white",
       },
       size: {
         default: "px-2 py-1.5 rounded-md",

@@ -15,7 +15,6 @@ import { cn } from "@lib/utils";
 export interface IDataTableAction {
   name: string;
   key: string;
-  selectedKey?: string;
   className?: string;
   icon?: React.ReactNode;
   onClick?: (row: any) => void;
@@ -28,9 +27,16 @@ export interface IDataTableAction {
 interface IDataTableActionsProps {
   row: any;
   actions: Array<IDataTableAction>;
+  className?: string;
+  trigger?: React.ReactNode;
 }
 
-export function DataTableActions({ actions, row }: IDataTableActionsProps) {
+export function DataTableActions({
+  className,
+  trigger,
+  actions,
+  row,
+}: IDataTableActionsProps) {
   const [activeAction, setActiveAction] = useState<IDataTableAction | null>(
     null
   );
@@ -62,9 +68,9 @@ export function DataTableActions({ actions, row }: IDataTableActionsProps) {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="icon" className={cn("sticky end-0")}>
+          {trigger?trigger:<Button variant="ghost" size="icon" className={cn(className,"sticky end-0")}>
             <MoreVertical className="h-4 w-4" />
-          </Button>
+          </Button>}
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="rounded-xl min-w-[8rem]">
           {visibleActions.map((action, i) => (

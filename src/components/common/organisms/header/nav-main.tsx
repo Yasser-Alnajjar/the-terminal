@@ -38,7 +38,9 @@ export function NavMain({ items }: { items: Array<ISidebarItem> }) {
                   >
                     <AccordionTrigger>
                       {item.icon && item.icon}
-                      {item.title}
+                      <span className="block w-full group-data-[collapsible=icon]:w-0 transition-[width] duration-300">
+                        {item.title}
+                      </span>
                     </AccordionTrigger>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -66,7 +68,9 @@ export function NavMain({ items }: { items: Array<ISidebarItem> }) {
                 >
                   <Link href={item.url}>
                     {item.icon && item.icon}
-                    {item.title}
+                    <span className="block w-full group-data-[collapsible=icon]:w-0 transition-[width] duration-300">
+                      {item.title}
+                    </span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

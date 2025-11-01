@@ -34,7 +34,7 @@ const ProgressInput = React.forwardRef<HTMLInputElement, ProgressInputProps>(
           ref={ref}
           {...props}
           className={cn(
-            "border border-border disabled:[&~span]:hidden disabled:bg-gray-100 px-4 flex w-full text-xs rounded-ss-lg rounded-se-lg py-1.5 file:border-0 file:text-sm file:font-medium file:text-foreground placeholder:text-gray-400 focus-visible:outline-none disabled:cursor-not-allowed disabled:text-disabled disabled:rounded-lg transition-all duration-200",
+            "border-b border-border disabled:[&~span]:hidden disabled:bg-gray-100 px-4 flex w-full text-xs rounded-ss-lg rounded-se-lg py-1.5 file:border-0 file:text-sm file:font-medium file:text-foreground placeholder:text-gray-400 focus-visible:outline-none disabled:cursor-not-allowed disabled:text-disabled disabled:rounded-lg transition-all duration-200",
             className
           )}
         />

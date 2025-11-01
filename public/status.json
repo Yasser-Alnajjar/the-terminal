@@ -1,0 +1,100 @@
+[
+  {
+    "_id": "~16512",
+    "_type": "AlertStatus",
+    "_createdAt": 1760978650495,
+    "_createdBy": "system@thehive.local",
+    "value": "New",
+    "stage": "New",
+    "order": 1,
+    "color": "#d0021b",
+    "hidden": false,
+    "extraData": {
+      "canDelete": false
+    }
+  },
+  {
+    "_id": "~8312",
+    "_type": "AlertStatus",
+    "_createdAt": 1760978650496,
+    "_createdBy": "system@thehive.local",
+    "value": "InProgress",
+    "stage": "InProgress",
+    "order": 2,
+    "color": "#ffa940",
+    "hidden": false,
+    "extraData": {
+      "canDelete": false
+    }
+  },
+  {
+    "_id": "~4128",
+    "_type": "AlertStatus",
+    "_createdAt": 1760978638841,
+    "_createdBy": "system@thehive.local",
+    "value": "Pending",
+    "stage": "InProgress",
+    "order": 3,
+    "color": "#ffa940",
+    "hidden": false,
+    "extraData": {
+      "canDelete": false
+    }
+  },
+  {
+    "_id": "~4288",
+    "_type": "AlertStatus",
+    "_createdAt": 1760978639529,
+    "_createdBy": "system@thehive.local",
+    "value": "Imported",
+    "stage": "Imported",
+    "order": 7,
+    "color": "#4a90e2",
+    "hidden": false,
+    "extraData": {
+      "canDelete": false
+    }
+  },
+  {
+    "_id": "~16448",
+    "_type": "AlertStatus",
+    "_createdAt": 1760978638844,
+    "_createdBy": "system@thehive.local",
+    "value": "Duplicate",
+    "stage": "Closed",
+    "order": 6,
+    "color": "#B1B1B1",
+    "hidden": false,
+    "extraData": {
+      "canDelete": false
+    }
+  },
+  {
+    "_id": "~12408",
+    "_type": "AlertStatus",
+    "_createdAt": 1760978650496,
+    "_createdBy": "system@thehive.local",
+    "value": "FalsePositive",
+    "stage": "Closed",
+    "order": 5,
+    "color": "#52c41a",
+    "hidden": false,
+    "extraData": {
+      "canDelete": false
+    }
+  },
+  {
+    "_id": "~24760",
+    "_type": "AlertStatus",
+    "_createdAt": 1760978638843,
+    "_createdBy": "system@thehive.local",
+    "value": "Ignored",
+    "stage": "Closed",
+    "order": 4,
+    "color": "#B1B1B1",
+    "hidden": false,
+    "extraData": {
+      "canDelete": false
+    }
+  }
+]

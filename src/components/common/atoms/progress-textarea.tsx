@@ -11,7 +11,7 @@ export interface ProgressTextareaProps
 const ProgressTextarea = React.forwardRef<
   HTMLTextAreaElement,
   ProgressTextareaProps
->(({ className, variant = "default", ...props }, ref) => {
+>(({ className, rows = 3, variant = "default", ...props }, ref) => {
   const variantColorMap: Record<string, string> = {
     default:
       "group-focus-within:before:w-full group-focus-within:before:bg-primary-400",
@@ -28,9 +28,9 @@ const ProgressTextarea = React.forwardRef<
       <textarea
         ref={ref}
         {...props}
-        rows={3}
+        rows={rows}
         className={cn(
-          "flex w-full text-xs border disabled:[&~span]:hidden border-border disabled:bg-gray-100 rounded-ss-lg rounded-se-lg  disabled:rounded-lg p-2.5 file:border-0 file:text-sm file:font-medium file:text-foreground placeholder:text-gray-400 focus-visible:outline-none disabled:cursor-not-allowed disabled:text-disabled transition-all duration-300",
+          "flex w-full text-xs border-b disabled:[&~span]:hidden border-border disabled:bg-gray-100 rounded-ss-lg rounded-se-lg  disabled:rounded-lg p-2.5 file:border-0 file:text-sm file:font-medium file:text-foreground placeholder:text-gray-400 focus-visible:outline-none disabled:cursor-not-allowed disabled:text-disabled transition-all duration-300",
           className
         )}
       />

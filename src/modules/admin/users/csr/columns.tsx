@@ -164,7 +164,6 @@ export const useUsersColumns = () => {
               {
                 key: "delete",
                 name: "View Details",
-                selectedKey: "_id",
                 onClick(ids) {
                   console.log("view details:", ids);
                 },

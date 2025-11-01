@@ -11,7 +11,6 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  Textarea,
   FileDropZone,
   MultiSelect,
   TagSelect,
@@ -19,10 +18,12 @@ import {
   Popover,
   PopoverTrigger,
   Button,
-  PopoverContent,
   InputPassword,
   UploadAvatar,
   PhoneInput,
+  InlinePopoverContent,
+  ProgressTextarea,
+  ProgressTextEditor,
 } from "@components";
 import { Field, getIn, FieldArray } from "formik";
 import React from "react";
@@ -35,6 +36,7 @@ import { useLocale } from "next-intl";
 import { PopoverClose } from "@radix-ui/react-popover";
 import { TableField } from "./table-field";
 import { useTranslate } from "@hooks";
+
 interface FieldRendererProps {
   field: IFieldConfig;
   name?: string;
@@ -215,7 +217,7 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
                 }}
               >
                 <SelectTrigger
-                  variant={variant}
+                  variant={field.variant || variant}
                   className={cn(field.className)}
                   filled={field.filled}
                 >
@@ -228,7 +230,11 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
                 </SelectTrigger>
                 <SelectContent position={field?.position}>
                   {(field.options || []).map((option, index) => (
-                    <SelectItem key={index} value={String(option.value)}>
+                    <SelectItem
+                      key={index}
+                      value={String(option.value)}
+                      className={cn(option.itemClassName)}
+                    >
                       {option.label}
                     </SelectItem>
                   ))}
@@ -283,9 +289,6 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
               <TagSelect
                 key={fullName}
                 {...field}
-                options={
-                  (field.options && field.options.map((o) => o.value)) || []
-                }
                 value={formikField.value || []}
                 onChange={(selected: string[]) => {
                   form.setFieldValue(fullName, selected);
@@ -339,6 +342,187 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
                 }}
               />
             );
+          case "datetime":
+            const isDisabled = !!field.disabled;
+
+            return (
+              <Popover key={fullName} open={!isDisabled ? undefined : false}>
+                <PopoverTrigger asChild>
+                  <div
+                    className={cn(
+                      "relative flex gap-2",
+                      isDisabled && "opacity-50 pointer-events-none"
+                    )}
+                  >
+                    <ProgressInput
+                      id={fullName}
+                      variant={field.variant || variant}
+                      filled={field.filled}
+                      value={
+                        value instanceof Date
+                          ? format(value, "MMMM dd, yyyy HH:mm:ss", {
+                              locale: locale === "en" ? enUS : arSA,
+                            })
+                          : ""
+                      }
+                      placeholder={
+                        locale === "en"
+                          ? "MM/DD/YYYY HH:mm:ss"
+                          : "يوم/شهر/سنة ساعة:دقيقة:ثانية"
+                      }
+                      className="pr-10"
+                      readOnly
+                      disabled={isDisabled}
+                    />
+
+                    <Button
+                      id={`${fullName}-picker`}
+                      variant="ghost"
+                      size="icon"
+                      disabled={isDisabled}
+                      className={cn(
+                        "absolute right-2 top-1/2 h-6 w-6 -translate-y-1/2",
+                        isDisabled && "cursor-not-allowed opacity-60"
+                      )}
+                    >
+                      <CalendarIcon className="size-3" />
+                      <span className="sr-only">Select date & time</span>
+                    </Button>
+                  </div>
+                </PopoverTrigger>
+
+                {!isDisabled && (
+                  <InlinePopoverContent
+                    className="w-auto overflow-hidden p-4 border-border shadow-[0px_24px_48px_-12px_#1018282E]"
+                    align="end"
+                    alignOffset={-8}
+                    sideOffset={10}
+                  >
+                    <div className="flex gap-3">
+                      {/* Calendar */}
+                      <Calendar
+                        mode="single"
+                        dir={locale === "en" ? "ltr" : "rtl"}
+                        locale={locale === "en" ? enUS : arSA}
+                        selected={value instanceof Date ? value : undefined}
+                        captionLayout="dropdown"
+                        onSelect={(date) => {
+                          if (!date) return;
+                          const current =
+                            value instanceof Date ? value : new Date();
+                          const newDate = new Date(date);
+                          newDate.setHours(current.getHours());
+                          newDate.setMinutes(current.getMinutes());
+                          newDate.setSeconds(current.getSeconds());
+                          form.setFieldValue(fullName, newDate);
+                          field.onChange?.({ value: newDate, form });
+                        }}
+                      />
+
+                      {/* Time selectors */}
+                      <div className="flex justify-between gap-4 h-[280px]">
+                        {[
+                          { label: "Hours", max: 23 },
+                          { label: "Minutes", max: 59 },
+                          { label: "Seconds", max: 59 },
+                        ].map(({ label, max }) => {
+                          const unit = label.toLowerCase() as
+                            | "hours"
+                            | "minutes"
+                            | "seconds";
+                          const current =
+                            value instanceof Date
+                              ? value[
+                                  `get${
+                                    label as "Hours" | "Minutes" | "Seconds"
+                                  }`
+                                ]()
+                              : 0;
+
+                          const handleChange = (newVal: number) => {
+                            const newDate =
+                              value instanceof Date
+                                ? new Date(value)
+                                : new Date();
+                            if (unit === "hours") newDate.setHours(newVal);
+                            if (unit === "minutes") newDate.setMinutes(newVal);
+                            if (unit === "seconds") newDate.setSeconds(newVal);
+                            form.setFieldValue(fullName, newDate);
+                            field.onChange?.({ value: newDate, form });
+                          };
+
+                          const containerRef = (el: HTMLDivElement | null) => {
+                            if (!el) return;
+                            setTimeout(() => {
+                              const selected = el.querySelector(
+                                `[data-value="${current}"]`
+                              ) as HTMLElement | null;
+                              if (!selected) return;
+                              const containerRect = el.getBoundingClientRect();
+                              const selectedRect =
+                                selected.getBoundingClientRect();
+                              const offsetInside =
+                                selectedRect.top - containerRect.top;
+                              const targetScrollTop =
+                                el.scrollTop +
+                                offsetInside -
+                                el.clientHeight / 2 +
+                                selected.clientHeight / 2;
+                              el.scrollTo({
+                                top: Math.max(
+                                  0,
+                                  Math.round(targetScrollTop + 30)
+                                ),
+                                behavior: "smooth",
+                              });
+                            }, 40);
+                          };
+
+                          return (
+                            <div
+                              key={label}
+                              className="flex flex-col items-center w-20 h-full overflow-hidden"
+                            >
+                              <label className="text-xs text-muted-foreground mb-1">
+                                {label}
+                              </label>
+
+                              <div
+                                ref={containerRef}
+                                className="relative h-full w-full overflow-y-auto hide-scrollbar rounded-lg"
+                              >
+                                <div className="flex flex-col items-center py-2">
+                                  {Array.from({ length: max + 1 }, (_, i) => (
+                                    <button
+                                      key={i}
+                                      data-value={i}
+                                      onClick={() => handleChange(i)}
+                                      disabled={isDisabled}
+                                      className={cn(
+                                        "cursor-pointer w-full py-1 text-sm transition-colors rounded-md",
+                                        i === current
+                                          ? "bg-primary-400 text-primary-foreground font-medium"
+                                          : "hover:bg-muted",
+                                        isDisabled &&
+                                          "opacity-50 cursor-not-allowed"
+                                      )}
+                                    >
+                                      {i.toString().padStart(2, "0")}
+                                    </button>
+                                  ))}
+                                  <div className="h-10" />
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </InlinePopoverContent>
+                )}
+              </Popover>
+            );
+
           case "date":
             return (
               <Popover key={fullName}>
@@ -346,7 +530,7 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
                   <div className="relative flex gap-2">
                     <ProgressInput
                       id={fullName}
-                      variant={variant}
+                      variant={field.variant || variant}
                       filled={field.filled}
                       value={
                         value instanceof Date
@@ -387,7 +571,7 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
                     </Button>
                   </div>
                 </PopoverTrigger>
-                <PopoverContent
+                <InlinePopoverContent
                   className="w-auto overflow-hidden p-0 border-border shadow-[0px_24px_48px_-12px_#1018282E]"
                   align="end"
                   alignOffset={-8}
@@ -415,9 +599,10 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
                       }}
                     />
                   </PopoverClose>
-                </PopoverContent>
+                </InlinePopoverContent>
               </Popover>
             );
+
           case "password":
             return (
               <InputPassword
@@ -429,7 +614,7 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
                 disabled={field.disabled}
                 {...formikField}
                 value={value}
-                variant={variant}
+                variant={field.variant || variant}
                 onChange={(event) => {
                   form.setFieldValue(fullName, event.target.value);
 
@@ -454,14 +639,34 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
                 id={fullName}
               />
             );
+          case "editor":
+            return (
+              <ProgressTextEditor
+                key={fullName}
+                id={fullName}
+                dir={locale === "en" ? "ltr" : "rtl"}
+                className={cn(field.className)}
+                variant={field.variant || variant}
+                disabled={field.disabled}
+                value={value}
+                onChange={(val) => {
+                  form.setFieldValue(fullName, val);
+                  if (field.onChange) field.onChange({ value: val, form });
+                }}
+                onBlur={() => {
+                  form.setFieldTouched(fullName, true);
+                  if (field.onBlur) field.onBlur({ value, form });
+                }}
+              />
+            );
           case "textarea":
             return (
-              <Textarea
+              <ProgressTextarea
                 key={fullName}
                 placeholder={field.placeholder}
                 dir={locale === "en" ? "ltr" : "rtl"}
                 className={cn(field.className)}
-                variant={variant}
+                variant={field.variant || variant}
                 autoComplete={field.autoComplete || "off"}
                 autoFocus={field.autoFocus}
                 disabled={field.disabled}
@@ -499,7 +704,7 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
                 placeholder={field.placeholder}
                 dir={locale === "en" ? "ltr" : "rtl"}
                 className={cn(field.className)}
-                variant={variant}
+                variant={field.variant || variant}
                 autoComplete={field.autoComplete || "off"}
                 autoFocus={field.autoFocus}
                 disabled={field.disabled}
@@ -556,7 +761,7 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
                 autoComplete={field.autoComplete || "off"}
                 autoFocus={field.autoFocus}
                 disabled={field.disabled}
-                variant={variant}
+                variant={field.variant || variant}
                 id={fullName}
               />
             );

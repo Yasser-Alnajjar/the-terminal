@@ -4,7 +4,7 @@ import { ADMIN } from "@modules";
 export const generateMetadata = async ({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) => {
   const id = (await params).id;
   return {

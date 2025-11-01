@@ -2,10 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: {
-    template: `%s | The Terminal`,
-    default: "The Terminal",
-  },
+  title: "The Terminal",
 };
 
 export default function RootLayout({

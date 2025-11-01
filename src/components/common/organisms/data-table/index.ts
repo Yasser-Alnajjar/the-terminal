@@ -9,3 +9,5 @@ export * from "./data-table-empty";
 export * from "./filter-button";
 export * from "./data-table-truncated-text";
 export * from "./data-table-actions";
+export * from "./data-table-delete-column";
+export * from "./quick-filters";

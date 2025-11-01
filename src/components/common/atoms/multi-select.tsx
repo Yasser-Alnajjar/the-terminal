@@ -10,7 +10,7 @@ import {
   CommandItem,
   CommandList,
   Popover,
-  PopoverContent,
+  InlinePopoverContent,
   PopoverTrigger,
   Badge,
   Button,
@@ -18,7 +18,7 @@ import {
 } from "@components";
 
 export interface Option {
-  label: string;
+  label: string | React.ReactNode;
   value: string;
 }
 
@@ -65,7 +65,7 @@ export function MultiSelect({
   const filteredOptions = React.useMemo(() => {
     if (!search) return availableOptions;
     return availableOptions.filter((option) =>
-      option.label.toLowerCase().includes(search.toLowerCase())
+      (option.label as string).toLowerCase().includes(search.toLowerCase())
     );
   }, [availableOptions, search]);
 
@@ -75,7 +75,7 @@ export function MultiSelect({
     const searchLower = search.toLowerCase().trim();
     const optionExists = options.some(
       (option) =>
-        option.label.toLowerCase() === searchLower ||
+        (option.label as string).toLowerCase() === searchLower ||
         option.value.toLowerCase() === searchLower
     );
 
@@ -175,7 +175,7 @@ export function MultiSelect({
             </div>
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="!w-full p-0" align="start">
+        <InlinePopoverContent className="!w-full p-0" align="start">
           <Command>
             <div className="flex items-center border-b px-3">
               <Input
@@ -231,7 +231,7 @@ export function MultiSelect({
               )}
             </CommandList>
           </Command>
-        </PopoverContent>
+        </InlinePopoverContent>
       </Popover>
     </div>
   );

@@ -24,7 +24,7 @@ function toast({ title, variant, ...props }: ToastProps) {
   return sonnerToast(title, {
     ...props,
     className: toastVariants({ variant }),
-    position: "bottom-center",
+    position: "bottom-left",
     classNames: {
       icon: "[&>svg]:!shrink-0 [&>svg]:!size-4 mx-0",
       title: "!leading-[100%]",

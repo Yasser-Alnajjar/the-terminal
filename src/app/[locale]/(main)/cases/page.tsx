@@ -1,5 +1,5 @@
 import React from "react";
-import { NORMAL } from "@modules";
+import { Cases } from "@modules";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
-  return <NORMAL.Cases />;
+  return <Cases.List />;
 };
 
 export default page;

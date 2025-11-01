@@ -91,3 +91,8 @@
   border: 10px solid transparent;
   background-clip: content-box;
 }
+
+.w-md-editor-toolbar {
+  border-color: var(--color-border);
+  background-color: var(--color-gray-50) !important;
+}

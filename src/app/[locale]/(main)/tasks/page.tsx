@@ -1,5 +1,5 @@
 import React from "react";
-import { NORMAL } from "@modules";
+import { Tasks } from "@modules";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
-  return <NORMAL.Tasks />;
+  return <Tasks.List />;
 };
 
 export default page;

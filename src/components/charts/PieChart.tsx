@@ -54,7 +54,7 @@ export const PieChart: React.FC<PieChartProps> = ({
         avoidLabelOverlap: false,
         itemStyle: {
           borderRadius: 15,
-          borderColor: "#fff",
+          borderColor: isDark ? "#20252e" : "#f4f6fa",
           borderWidth: 2,
         },
         label: {

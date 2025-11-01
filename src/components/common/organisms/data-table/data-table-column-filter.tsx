@@ -113,7 +113,7 @@ export const DataTableFilters: React.FC<Props> = ({
                   )
                   .map((f) => (
                     <SelectItem key={f.id} value={f.id}>
-                      {f.label}
+                      {f.id}
                     </SelectItem>
                   ))}
               </SelectContent>
@@ -344,7 +344,7 @@ export const DataTableFilters: React.FC<Props> = ({
               return (
                 <Badge key={idx} className="flex items-center gap-1 capitalize">
                   <span>
-                    {cfg.label}:{" "}
+                    {cfg.id}:{" "}
                     {formatFilterValue(cfg.type, it.operator, it.value)}
                   </span>
                   <X

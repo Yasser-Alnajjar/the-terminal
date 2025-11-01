@@ -26,17 +26,14 @@ import {
 import { DataTablePagination } from "./data-table-pagination";
 
 import { cn } from "@lib/utils";
-import { DataTableDeleteColumn } from "./data-table-delete-column";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  rowSelection?: Record<string, boolean>;
-  onRowSelectionChange?: (selection: Record<string, boolean>) => void;
   className?: string;
   headerClassName?: string;
   paginated?: boolean;
-  onDelete?: (id: Array<string>) => void;
+  selectionRender?: ({ table }: { table: TTable<TData> }) => React.ReactNode;
   addButton?: ({ table }: { table: TTable<TData> }) => React.ReactNode;
   header?: ({ table }: { table: TTable<TData> }) => React.ReactNode;
   footer?: ({ table }: { table: TTable<TData> }) => React.ReactNode;
@@ -50,7 +47,7 @@ export function DataTable<TData, TValue>({
   data,
   headerClassName,
   paginated = true,
-  onDelete,
+  selectionRender,
   addButton,
   header,
   footer,
@@ -119,25 +116,20 @@ export function DataTable<TData, TValue>({
         )}
       >
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4 p-4">
-          {(title || Object.keys(table.getState().rowSelection).length > 0) && (
+          {(title ||
+            addButton ||
+            Object.keys(table.getState().rowSelection).length > 0) && (
             <div className="flex flex-col lg:flex-row items-center gap-2">
               {addButton && addButton({ table })}
-              {Object.keys(table.getState().rowSelection).length > 0 && (
-                <DataTableDeleteColumn
-                  mode="bulk"
-                  table={table}
-                  onDelete={onDelete}
-                  selectedKey="_id"
-                />
-              )}
+              {selectionRender && selectionRender({ table })}
               {title && <h2 className="font-semibold">{title}</h2>}
             </div>
           )}
           {header && header({ table })}
         </div>
 
-        <div className="overflow-x-auto custom-scroll">
-          <Table className="table-auto w-full p-1">
+        <div className="overflow-x-auto hide-scrollbar">
+          <Table className=" w-full p-1">
             {table.getRowModel().rows.length > 0 && (
               <TableHeader>
                 {table.getHeaderGroups().map((headerGroup) => (

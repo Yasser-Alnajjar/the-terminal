@@ -5,3 +5,4 @@ export * from "./stepper-form";
 export * from "./header";
 export * from "./permissions/PermissionsPopover";
 export * from "./formik-field";
+export * from "./text-editor";
