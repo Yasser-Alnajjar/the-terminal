@@ -7,7 +7,7 @@
     "build:linux": "rm -rf .next && bun run next build && cp -rf ./public/. ./.next/standalone/public && cp -rf ./.next/static/. ./.next/standalone/.next/static",
     "build": "bun i && next build",
     "build:windows": "bun run next build && xcopy \".\\public\" \".\\.next\\standalone\\public\" /e /i /y && xcopy \".\\.next\\static\" \".\\.next\\standalone\\.next\\static\" /e /i /y",
-    "dev": "next dev --port 5188",
+    "dev": "next dev --port 5188 --`turbopack",
     "lint": "bun run format:fix && next lint",
     "start": "PORT=5188 node server.js",
     "start:dev:linux": "bun i && bun run build:linux && cd .next/standalone && bun start",
