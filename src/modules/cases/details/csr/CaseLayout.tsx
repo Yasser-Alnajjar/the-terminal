@@ -28,7 +28,7 @@ import { Pages } from "./pages";
 import { History } from "./history";
 import { Similar } from "./similar";
 
-export const CaseLayout = ({ children }: { children: React.ReactNode }) => {
+export const CaseLayout = () => {
   const pathname = usePathname();
   const currentPath = pathname.split("/").at(-1) ?? "general";
 
@@ -124,7 +124,6 @@ export const CaseLayout = ({ children }: { children: React.ReactNode }) => {
           ))}
         </div>
 
-        {/* ✅ Correct dynamic rendering */}
         {sectionMap[currentPath] ?? <General />}
       </div>
     </>

@@ -1,0 +1,52 @@
+name: the terminal
+
+services:
+  website:
+    image: "the_terminal:${VERSION:-latest}"
+    container_name: the_terminal
+    hostname: 0.0.0.0
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      args:
+        - VERSION=${VERSION}
+    env_file:
+      - ./.env.production
+    command: ["bun", "server.js", "--hostname", "0.0.0.0"]
+    restart: unless-stopped
+    user: "${UID:-1000}:${GID:-1000}"
+
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+      PORT: 5188
+
+    ports:
+      - "0.0.0.0:5188:5188"
+
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "2.000"
+
+    networks:
+      - terminal-network
+
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:5188 || exit 1"]
+      start_period: 20s
+      interval: 10s
+      timeout: 2s
+      retries: 5
+
+    labels:
+      com.terminal.stack: "terminal-stack"
+      com.terminal.service: "website"
+      com.terminal.role: "frontend"
+      com.terminal.environment: "production"
+      com.terminal.version: "${VERSION}"
+
+networks:
+  terminal-network:
+    driver: bridge

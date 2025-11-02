@@ -186,7 +186,7 @@ export const useCasesColumns = () => {
                   </Tooltip>
                 </TooltipProvider>
                 <Link
-                  href={`/cases/${row.original._id}`}
+                  href={`/cases/${row.original._id}/general`}
                   className="hover:text-primary-400 transition-colors duration-300 flex gap-1"
                 >
                   <span>#{row.original.number}</span> -{" "}

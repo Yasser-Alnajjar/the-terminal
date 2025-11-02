@@ -1,5 +1,6 @@
 import React from "react";
 import { ADMIN } from "@modules";
+import { Utils } from "@lib/utils";
 
 export const generateMetadata = async ({
   params,
@@ -8,7 +9,7 @@ export const generateMetadata = async ({
 }) => {
   const id = (await params).id;
   return {
-    title: `${id} - Users`,
+    title: `${Utils.toPascalCase(id)} - Users`,
   };
 };
 const page = () => {

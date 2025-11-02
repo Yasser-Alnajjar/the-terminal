@@ -1,4 +1,3 @@
-import React from "react";
 import { CsrList } from "../csr";
 import data from "public/dashboards.json";
 import filters from "public/filter-by-field.json";
