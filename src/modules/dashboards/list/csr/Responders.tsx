@@ -8,7 +8,7 @@ import {
   Button,
 } from "@components";
 import { Form, FormikProvider, useFormik } from "formik";
-import { MessageBox } from "src/components/common/icons/message-box";
+import { MessageBox } from "@icons";
 
 export const Responders = ({
   close,

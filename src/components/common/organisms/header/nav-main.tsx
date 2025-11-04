@@ -34,7 +34,7 @@ export function NavMain({ items }: { items: Array<ISidebarItem> }) {
                   <SidebarMenuButton
                     tooltip={item.title}
                     asChild
-                    isActive={pathname === item.url}
+                    isActive={pathname.includes(item.url)}
                   >
                     <AccordionTrigger>
                       {item.icon && item.icon}
@@ -64,7 +64,7 @@ export function NavMain({ items }: { items: Array<ISidebarItem> }) {
                 <SidebarMenuButton
                   tooltip={item.title}
                   asChild
-                  isActive={pathname === item.url}
+                  isActive={pathname.includes(item.url)}
                 >
                   <Link href={item.url}>
                     {item.icon && item.icon}

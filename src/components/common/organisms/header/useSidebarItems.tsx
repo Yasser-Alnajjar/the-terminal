@@ -75,7 +75,8 @@ const allSidebarItems = (t: any) => [
     title: t("dashboards"),
     url: "/dashboards",
     icon: <LayoutDashboard />,
-  },{
+  },
+  {
     key: "organization",
     title: t("organizations"),
     url: "/organization",

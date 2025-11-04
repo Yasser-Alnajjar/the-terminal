@@ -10,6 +10,7 @@ import {
   SheetFooter,
   FormikField,
   DataTableActions,
+  Line,
 } from "@components";
 import { useClipboard, useToast } from "@hooks";
 
@@ -36,6 +37,8 @@ import {
 import { Responders } from "./Responders";
 import users from "public/users.json";
 import { useSession } from "next-auth/react";
+import { Logs } from "./logs";
+import { MessageBox } from "@icons";
 export const TaskDetails = ({ data }: { data: any }) => {
   const { toast } = useToast();
   const { data: session } = useSession();
@@ -169,6 +172,16 @@ export const TaskDetails = ({ data }: { data: any }) => {
                 }}
                 formik={formik}
               />
+              <Logs data={data.extraData.logs} />
+              <div className="flex flex-col gap-6">
+                <Line>
+                  <div className="mx-10 px-5">Responder Reports</div>
+                </Line>
+                <div className="w-full min-h-36 flex justify-center items-center flex-col gap-2">
+                  <MessageBox width={60} height={40} />
+                  <p className="text-xs">No Reports</p>
+                </div>
+              </div>
             </Form>
           </FormikProvider>
         </div>

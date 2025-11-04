@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  ProgressInput,
+  Input,
   Switch,
   Checkbox,
   RadioGroup,
@@ -22,8 +22,8 @@ import {
   UploadAvatar,
   PhoneInput,
   InlinePopoverContent,
-  ProgressTextarea,
-  ProgressTextEditor,
+  Textarea,
+  TextEditor,
 } from "@components";
 import { Field, getIn, FieldArray } from "formik";
 import React from "react";
@@ -219,7 +219,6 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
                 <SelectTrigger
                   variant={field.variant || variant}
                   className={cn(field.className)}
-                  filled={field.filled}
                 >
                   <SelectValue
                     placeholder={
@@ -354,10 +353,9 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
                       isDisabled && "opacity-50 pointer-events-none"
                     )}
                   >
-                    <ProgressInput
+                    <Input
                       id={fullName}
                       variant={field.variant || variant}
-                      filled={field.filled}
                       value={
                         value instanceof Date
                           ? format(value, "MMMM dd, yyyy HH:mm:ss", {
@@ -528,10 +526,9 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
               <Popover key={fullName}>
                 <PopoverTrigger asChild>
                   <div className="relative flex gap-2">
-                    <ProgressInput
+                    <Input
                       id={fullName}
                       variant={field.variant || variant}
-                      filled={field.filled}
                       value={
                         value instanceof Date
                           ? format(value, "MMMM dd, yyyy", {
@@ -641,12 +638,11 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
             );
           case "editor":
             return (
-              <ProgressTextEditor
+              <TextEditor
                 key={fullName}
                 id={fullName}
                 dir={locale === "en" ? "ltr" : "rtl"}
                 className={cn(field.className)}
-                variant={field.variant || variant}
                 disabled={field.disabled}
                 value={value}
                 onChange={(val) => {
@@ -661,7 +657,7 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
             );
           case "textarea":
             return (
-              <ProgressTextarea
+              <Textarea
                 key={fullName}
                 placeholder={field.placeholder}
                 dir={locale === "en" ? "ltr" : "rtl"}
@@ -728,9 +724,8 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
             return field.custom;
           default:
             return (
-              <ProgressInput
+              <Input
                 key={fullName}
-                filled={field.filled}
                 type={field.type || "text"}
                 placeholder={field.placeholder}
                 dir={locale === "en" ? "ltr" : "rtl"}

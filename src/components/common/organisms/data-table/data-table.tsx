@@ -108,7 +108,7 @@ export function DataTable<TData, TValue>({
   }, [customFilters, onFiltersChange]);
 
   return (
-    <React.Fragment>
+    <div className="flex flex-1 flex-col gap-2">
       <div
         className={cn(
           "w-full  border border-border rounded-lg shadow-md flex-1",
@@ -227,6 +227,6 @@ export function DataTable<TData, TValue>({
 
       {paginated && <DataTablePagination table={table} />}
       {footer && footer({ table })}
-    </React.Fragment>
+    </div>
   );
 }

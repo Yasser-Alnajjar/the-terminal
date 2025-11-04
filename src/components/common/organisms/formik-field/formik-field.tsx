@@ -10,7 +10,10 @@ export const FormikField = ({
   formik: any;
 }) => {
   return (
-    <div key={field.name} className={cn(field.col, field.colClassName)}>
+    <div
+      key={field.name}
+      className={cn("col-span-12", field.col, field.colClassName)}
+    >
       <div
         className={cn(
           "flex flex-col gap-1",

@@ -16,7 +16,7 @@ import {
   FormikField,
 } from "@components";
 import { useClipboard, useToast } from "@hooks";
-import { IUser } from "@lib/types";
+import { IUser } from "src/types";
 import { Form, FormikProvider, useFormik } from "formik";
 import {
   Eye,

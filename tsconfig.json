@@ -23,7 +23,7 @@
       "@components": ["./src/components"],
       "@lib/*": ["./src/lib/*"],
       "@actions": ["./src/lib/actions"],
-      "@types": ["src/lib/types"],
+      "@types": ["./src/types"],
       "@modules": ["./src/modules"],
       "@helpers/*": ["./src/helpers/*"],
       "@hooks": ["./src/hooks"],

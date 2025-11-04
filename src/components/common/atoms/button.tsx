@@ -30,13 +30,13 @@ const buttonVariants = cva(
         link: "underline-offset-4 hover:underline",
 
         "primary-outline":
-          "border border-primary-400 text-primary-400 hover:bg-primary-400 hover:text-white focus-visible:bg-primary-400 focus-visible:text-white",
+          "border border-primary-400 text-primary-400 hover:bg-primary-50 focus-visible:bg-primary-50",
         "error-outline":
-          "border border-error-500 text-error-500 hover:bg-error-500 hover:text-white focus-visible:bg-error-500 focus-visible:text-white",
+          "border border-error-200 text-error-400 hover:bg-error-50 focus-visible:bg-error-50",
         "warning-outline":
-          "border border-warning-500 text-warning-500 hover:bg-warning-500 hover:text-white focus-visible:bg-warning-500 focus-visible:text-white",
+          "border border-warning-500 text-warning-500 hover:bg-warning-50 focus-visible:bg-warning-50",
         "success-outline":
-          "border border-success-500 text-success-500 hover:bg-success-500 hover:text-white focus-visible:bg-success-500 focus-visible:text-white",
+          "border border-success-500 text-success-500 hover:bg-success-50 focus-visible:bg-success-50",
       },
       size: {
         default: "px-2 py-1.5 rounded-md",

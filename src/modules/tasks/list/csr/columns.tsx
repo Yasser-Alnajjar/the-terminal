@@ -130,17 +130,17 @@ export const useCasesColumns = () => {
               >
                 {row.original.status === "Completed" ? (
                   <CheckCircle
-                    className="absolute left-2 top-1/2 -translate-y-1/2 t z-10"
+                    className="absolute start-2 top-1/2 -translate-y-1/2 t z-10"
                     size={14}
                   />
                 ) : row.original.status === "Cancel" ? (
                   <XCircle
-                    className="absolute left-2 top-1/2 -translate-y-1/2 t z-10"
+                    className="absolute start-2 top-1/2 -translate-y-1/2 t z-10"
                     size={14}
                   />
                 ) : (
                   <CirclePlay
-                    className="absolute left-2 top-1/2 -translate-y-1/2 t z-10"
+                    className="absolute start-2 top-1/2 -translate-y-1/2 t z-10"
                     size={14}
                   />
                 )}

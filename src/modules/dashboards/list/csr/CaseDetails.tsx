@@ -287,19 +287,10 @@ export const CaseDetails = ({ data }: { data: any }) => {
                   <FormikField
                     field={{
                       name: "assignee",
-                      placeholder: "Assignee",
+                      label: "Assignee",
                       type: "select",
                       options: users.map((user: any) => ({
-                        label: (
-                          <div className="flex items-center gap-3 capitalize">
-                            <Avatar className="size-8">
-                              <AvatarFallback className="capitalize">
-                                {user.name.charAt(0)}
-                              </AvatarFallback>
-                            </Avatar>
-                            {user.name}
-                          </div>
-                        ),
+                        label: user.name,
                         value: user.login,
                       })),
                     }}
@@ -431,7 +422,11 @@ export const CaseDetails = ({ data }: { data: any }) => {
                   {
                     key: "Flag case(s)",
                     name: data.flag ? "Unflag" : "Flag",
-                    icon: data.flag ? <FlagOff /> : <Flag className="text-primary-400"/>,
+                    icon: data.flag ? (
+                      <FlagOff />
+                    ) : (
+                      <Flag className="text-primary-400" />
+                    ),
                     onClick(row) {
                       toast({
                         title: row.flag ? "Flag" : "UnFlag",

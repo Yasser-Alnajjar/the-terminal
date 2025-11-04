@@ -3,5 +3,8 @@
 @import "./colors.css";
 @import "./custom.css";
 @import "./typography.css";
+@import "./markdown/markdown.css";
+@import "./markdown/github.css";
+@import "./markdown/github-dark.css";
 
 @custom-variant dark (&:is(.dark *));

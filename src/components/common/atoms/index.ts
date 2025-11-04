@@ -60,3 +60,4 @@ export * from "./phone-input";
 export * from "./stepper";
 export * from "./progress-input";
 export * from "./progress-textarea";
+export * from "./line";

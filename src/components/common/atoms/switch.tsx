@@ -15,17 +15,17 @@ const sizeClasses = {
   sm: {
     root: "h-3.5 w-6",
     thumb:
-      "h-2.5 w-2.5 translate-x-[2px] data-[state=checked]:translate-x-2.5 rtl:data-[state=checked]:-translate-x-2.5",
+      "h-2.5 w-2.5 translate-x-[2px] rtl:-translate-x-[2px] data-[state=checked]:translate-x-2.5 rtl:data-[state=checked]:-translate-x-2.5",
   },
   md: {
     root: "h-4 w-7",
     thumb:
-      "h-3 w-3 translate-x-[2px] data-[state=checked]:translate-x-3 rtl:data-[state=checked]:-translate-x-3",
+      "h-3 w-3 translate-x-[2px] rtl:-translate-x-[2px] data-[state=checked]:translate-x-3 rtl:data-[state=checked]:-translate-x-3",
   },
   lg: {
     root: "h-4.5 w-8",
     thumb:
-      "h-3.5 w-3.5 translate-x-[2px] data-[state=checked]:translate-x-3.5 rtl:data-[state=checked]:-translate-x-3.5",
+      "h-3.5 w-3.5 translate-x-[2px] rtl:-translate-x-[2px] data-[state=checked]:translate-x-3.5 rtl:data-[state=checked]:-translate-x-3.5",
   },
 };
 

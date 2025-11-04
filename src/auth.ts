@@ -2,7 +2,7 @@ import { getServerSession, type AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import fs from "fs";
 import path from "path";
-import { IOrganization } from "@lib/types";
+import { IOrganization } from "src/types";
 
 const filePath = path.join(process.cwd(), "public", "users.json");
 

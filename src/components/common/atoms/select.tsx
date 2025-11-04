@@ -4,73 +4,55 @@ import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { cn } from "@lib/utils";
+import { cva, VariantProps } from "class-variance-authority";
 
 const Select = SelectPrimitive.Root;
 const SelectGroup = SelectPrimitive.Group;
 const SelectValue = SelectPrimitive.Value;
+const selectVariants = cva(
+  "flex  w-full items-center justify-between rounded-lg bg-transparent px-4 py-1.5 text-sm transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 outline-0 shadow-[0px_1px_2px_0px_#1018280D,0px_-1px_2px_0px_#1018280D] border-border",
+  {
+    variants: {
+      variant: {
+        default:
+          "data-[state=open]:bg-primary-25 data-[state=open]:text-primary-400 data-[state=open]:shadow-[0px_1px_1px_0px_#0000001F,0px_0px_0px_2px_#3B82F666,0px_2px_5px_0px_#3B82F614] border  hover:border-primary-400 focus-visible:border-primary-400 focus-visible:shadow-[0px_1px_1px_0px_#0000001F,0px_0px_0px_2px_#3B82F666,0px_2px_5px_0px_#3B82F614]",
+        error:
+          "data-[state=open]:bg-error-25 data-[state=open]:text-error-400 bg-error-25 hover:bg-transparent focus:bg-transparent border hover:border-error-400 focus-visible:shadow-[0px_1px_1px_0px_#0000001F,0px_0px_0px_2px_#F3414166,0px_2px_5px_0px_#F3414114]",
+        warning:
+          "data-[state=open]:bg-warning-25 data-[state=open]:text-warning-400 bg-warning-25 hover:bg-transparent focus:bg-transparent border hover:border-warning-300 focus-visible:shadow-[0px_1px_1px_0px_#0000001F,0px_0px_0px_2px_#F59E0B66,0px_2px_5px_0px_#F59E0B14]",
+        success:
+          "data-[state=open]:bg-success-25 data-[state=open]:text-success-400 bg-success-25 hover:bg-transparent focus:bg-transparent border hover:border-success-300 focus-visible:shadow-[0px_1px_1px_0px_#0000001F,0px_0px_0px_2px_#10B98166,0px_2px_5px_0px_#10B98114]",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+);
 
 export interface SelectTriggerProps
-  extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> {
-  variant?: "default" | "error" | "warning" | "success";
-  filled?: boolean;
-}
+  extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>,
+    VariantProps<typeof selectVariants> {}
 
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   SelectTriggerProps
->(({ className, filled, variant = "default", children, ...props }, ref) => {
-  const variantMap: Record<string, string> = {
-    default:
-      "peer-data-[state=open]:before:w-full peer-data-[state=open]:before:bg-primary-400",
-    error:
-      "peer-data-[state=open]:before:w-full peer-data-[state=open]:before:bg-error-400",
-    warning:
-      "peer-data-[state=open]:before:w-full peer-data-[state=open]:before:bg-warning-400",
-    success:
-      "peer-data-[state=open]:before:w-full peer-data-[state=open]:before:bg-success-400",
-  };
-
-  const filledMap: Record<string, string> = {
-    default: "before:w-full before:bg-primary-400 text-primary-400",
-    error: "before:w-full before:bg-error-400 text-error-300",
-    warning: "before:w-full before:bg-warning-400 text-warning-400",
-    success: "before:w-full before:bg-success-400 text-success-400",
-  };
-
-  const colorTextMap: Record<string, string> = {
-    default: "",
-    error: "text-error-300",
-    warning: "text-warning-400",
-    success: "text-success-400",
-  };
-  return (
-    <div className="w-full relative">
-      <SelectPrimitive.Trigger
-        ref={ref}
-        className={cn(
-          "peer group flex border-b text-xs disabled:[&~span]:hidden border-border disabled:bg-gray-100 rounded-ss-lg rounded-se-lg  w-full items-center justify-between bg-transparent px-4 py-1.5 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 disabled:rounded-lg outline-0",
-          className,
-          colorTextMap[variant || "default"]
-        )}
-        {...props}
-      >
-        {children}
-        <SelectPrimitive.Icon asChild>
-          <ChevronDown className="h-4 w-4 opacity-50" />
-        </SelectPrimitive.Icon>
-      </SelectPrimitive.Trigger>
-      <span
-        className={cn(
-          "absolute left-0 bottom-0 w-full h-[2px] group-hover:bg-border overflow-hidden before:content-[''] before:absolute before:bottom-0 before:left-0 before:h-full before:w-0 before:transition-[width,background-color] before:duration-300 transition-all duration-300",
-          filled
-            ? filledMap[variant || "default"]
-            : variantMap[variant || "default"]
-        )}
-      />
-    </div>
-  );
-});
-
+>(({ className, variant, children, ...props }, ref) => (
+  <SelectPrimitive.Trigger
+    ref={ref}
+    className={cn(
+      "select-trigger data-[state=open]:[&>svg]:rotate-180",
+      selectVariants({ variant }),
+      className
+    )}
+    {...props}
+  >
+    {children}
+    <SelectPrimitive.Icon asChild>
+      <ChevronDown className="h-4 w-4 opacity-50 " />
+    </SelectPrimitive.Icon>
+  </SelectPrimitive.Trigger>
+));
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const SelectScrollUpButton = React.forwardRef<

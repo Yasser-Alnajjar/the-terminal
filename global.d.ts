@@ -1,4 +1,4 @@
-import { IUser } from "@types";
+import { IUser } from "src/types";
 import "react";
 
 declare module "*.svg" {
