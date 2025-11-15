@@ -39,7 +39,7 @@ export const CaseLayout = ({ children, data }: CaseLayoutProps) => {
     { href: "general", label: "General", icon: FileText },
     { href: "case-tasks", label: "Tasks", icon: ListChecks },
     { href: "observables", label: "Observables", icon: Fingerprint },
-    { href: "ttps", label: "TTPs", icon: Flag },
+    { href: "procedures", label: "TTPs", icon: Flag },
     { href: "attachments", label: "Attachments", icon: Paperclip },
     { href: "timeline", label: "Timeline", icon: Clock },
     { href: "report", label: "Report", icon: FileText },

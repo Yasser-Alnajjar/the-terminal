@@ -1,6 +1,9 @@
 import { Cases } from "@modules";
 import React, { Suspense } from "react";
 
+export const metadata = {
+  title: "Tasks - Case",
+};
 const page = async ({
   params,
 }: {

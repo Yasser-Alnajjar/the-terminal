@@ -9,11 +9,11 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        primary: "border-transparent bg-primary-50 text-primary-400",
-        error: "border-transparent bg-error-50 text-error-500",
-        success: "border-transparent bg-success-50 text-success-500",
-        warning: "border-transparent bg-warning-50 text-warning-500",
-        info: "border-transparent bg-light-300 text-gray-600",
+        primary: "bg-primary-50 text-primary-400",
+        error: "bg-error-50 text-error-500",
+        success: "bg-success-50 text-success-500",
+        warning: "bg-warning-50 text-warning-500",
+        info: "bg-light-300 text-gray-600",
       },
     },
     defaultVariants: {

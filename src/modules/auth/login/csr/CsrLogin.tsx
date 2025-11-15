@@ -19,9 +19,8 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "@navigation";
-import { Mail } from "lucide-react";
 
-export const Login = () => {
+export const CsrLogin = () => {
   const t = useTranslate("auth");
   const { toast } = useToast();
   const { getQueryObject } = useQueryParams();
@@ -43,7 +42,6 @@ export const Login = () => {
       placeholder: t("placeholder.enter", {
         field: t("email"),
       }),
-      icon: <Mail size={20} className="text-gray-400" />,
       required: true,
     },
     {

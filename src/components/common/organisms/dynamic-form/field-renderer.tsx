@@ -232,6 +232,7 @@ export function FieldRenderer({ field, name }: FieldRendererProps) {
                     <SelectItem
                       key={index}
                       value={String(option.value)}
+                      variant={option.variant || field.variant || variant}
                       className={cn(option.itemClassName)}
                     >
                       {option.label}

@@ -180,7 +180,7 @@ export function DataTable<TData, TValue>({
                     key={row.id}
                     data-state={row.getIsSelected() ? "selected" : undefined}
                     className={cn(
-                      "group border-b border-s border-s-transparent hover:!border-s data-[state=selected]:!border-s data-[state=selected]:border-s-primary-400 hover:border-s-primary-400  hover:bg-primary-25"
+                      "group border-b !border-s-2 border-s-transparent hover:!border-s-2 data-[state=selected]:!border-s data-[state=selected]:border-s-primary-400 hover:border-s-primary-400  hover:bg-primary-25"
                     )}
                   >
                     <TableCell className="text-center">

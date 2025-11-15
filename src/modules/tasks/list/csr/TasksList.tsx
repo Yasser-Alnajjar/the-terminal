@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { useCasesColumns } from "./columns";
+import { useTasksColumns } from "./columns";
 import {
   DataTable,
   DataTableFilters,
@@ -15,7 +15,7 @@ import { PieChart } from "@charts";
 import { ChartPie } from "lucide-react";
 
 export const TasksList = ({ data }: { data: any[] }) => {
-  const columns = useCasesColumns();
+  const columns = useTasksColumns();
   const { showFilter } = useStore((state) => ({
     showFilter: state.showFilter,
   }));

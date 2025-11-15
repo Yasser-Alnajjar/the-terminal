@@ -36,7 +36,7 @@ export async function middleware(request: NextRequest) {
   // Unauthenticated users
   if (!token && !isPublicPage) {
     const loginUrl = new URL(
-      pathnameLocale ? `/${pathnameLocale}/auth` : "/auth",
+      pathnameLocale ? `/${pathnameLocale}/auth/login` : "/auth/login",
       request.url
     );
     loginUrl.searchParams.set("callbackUrl", request.nextUrl.pathname);

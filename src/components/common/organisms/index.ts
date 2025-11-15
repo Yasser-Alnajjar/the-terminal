@@ -6,3 +6,4 @@ export * from "./header";
 export * from "./permissions/PermissionsPopover";
 export * from "./formik-field";
 export * from "./text-editor";
+export * from "./mitre-attack";

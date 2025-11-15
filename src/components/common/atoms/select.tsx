@@ -17,11 +17,11 @@ const selectVariants = cva(
         default:
           "data-[state=open]:bg-primary-25 data-[state=open]:text-primary-400 data-[state=open]:shadow-[0px_1px_1px_0px_#0000001F,0px_0px_0px_2px_#3B82F666,0px_2px_5px_0px_#3B82F614] border  hover:border-primary-400 focus-visible:border-primary-400 focus-visible:shadow-[0px_1px_1px_0px_#0000001F,0px_0px_0px_2px_#3B82F666,0px_2px_5px_0px_#3B82F614]",
         error:
-          "data-[state=open]:bg-error-25 data-[state=open]:text-error-400 bg-error-25 hover:bg-transparent focus:bg-transparent border hover:border-error-400 focus-visible:shadow-[0px_1px_1px_0px_#0000001F,0px_0px_0px_2px_#F3414166,0px_2px_5px_0px_#F3414114]",
+          "data-[state=open]:bg-error-25 data-[state=open]:text-error-400 bg-error-25 border border-error-400 focus-visible:shadow-[0px_1px_1px_0px_#0000001F,0px_0px_0px_2px_#F3414166,0px_2px_5px_0px_#F3414114]",
         warning:
-          "data-[state=open]:bg-warning-25 data-[state=open]:text-warning-400 bg-warning-25 hover:bg-transparent focus:bg-transparent border hover:border-warning-300 focus-visible:shadow-[0px_1px_1px_0px_#0000001F,0px_0px_0px_2px_#F59E0B66,0px_2px_5px_0px_#F59E0B14]",
+          "data-[state=open]:bg-warning-25 data-[state=open]:text-warning-400 bg-warning-25 border border-warning-300 focus-visible:shadow-[0px_1px_1px_0px_#0000001F,0px_0px_0px_2px_#F59E0B66,0px_2px_5px_0px_#F59E0B14]",
         success:
-          "data-[state=open]:bg-success-25 data-[state=open]:text-success-400 bg-success-25 hover:bg-transparent focus:bg-transparent border hover:border-success-300 focus-visible:shadow-[0px_1px_1px_0px_#0000001F,0px_0px_0px_2px_#10B98166,0px_2px_5px_0px_#10B98114]",
+          "data-[state=open]:bg-success-25 data-[state=open]:text-success-400 bg-success-25 border border-success-300 focus-visible:shadow-[0px_1px_1px_0px_#0000001F,0px_0px_0px_2px_#10B98166,0px_2px_5px_0px_#10B98114]",
       },
     },
     defaultVariants: {
@@ -132,17 +132,38 @@ const SelectLabel = React.forwardRef<
   />
 ));
 SelectLabel.displayName = SelectPrimitive.Label.displayName;
+const itemVariants = cva(
+  "relative text-gray-600 mb-1 flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 pl-2 pr-2 text-xs outline-none text-gray-600 data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+  {
+    variants: {
+      variant: {
+        default:
+          "data-[highlighted]:bg-primary-50 data-[highlighted]:text-primary-500 data-[state=checked]:bg-primary-400 data-[state=checked]:text-primary-25",
+        error:
+          "data-[highlighted]:bg-error-50 data-[highlighted]:text-error-500 data-[state=checked]:bg-error-500 data-[state=checked]:text-error-25",
+        warning:
+          "data-[highlighted]:bg-warning-50 data-[highlighted]:text-warning-500 data-[state=checked]:bg-warning-500 data-[state=checked]:text-warning-25",
+        success:
+          "data-[highlighted]:bg-success-50 data-[highlighted]:text-success-500 data-[state=checked]:bg-success-500 data-[state=checked]:text-success-25",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+);
+
+export interface SelectItemProps
+  extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>,
+    VariantProps<typeof itemVariants> {}
 
 const SelectItem = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
->(({ className, children, ...props }, ref) => (
+  SelectItemProps
+>(({ className, variant, children, ...props }, ref) => (
   <SelectPrimitive.Item
     ref={ref}
-    className={cn(
-      "relative mb-1 flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 pl-2 pr-2 text-xs outline-none text-gray-600 data-[highlighted]:bg-primary-25 data-[highlighted]:text-primary-500 data-[state=checked]:bg-primary-25 data-[state=checked]:text-primary-500 data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      className
-    )}
+    className={cn(itemVariants({ variant }), className)}
     {...props}
   >
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>

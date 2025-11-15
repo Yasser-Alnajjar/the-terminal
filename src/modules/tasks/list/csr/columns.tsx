@@ -36,7 +36,7 @@ import { useSession } from "next-auth/react";
 import { Responders } from "./Responders";
 import { TaskDetails } from "./TaskDetails";
 
-export const useCasesColumns = () => {
+export const useTasksColumns = () => {
   const { data: session } = useSession();
   const { toast } = useToast();
   const { addFilter } = useStore((state) => ({

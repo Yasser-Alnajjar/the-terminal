@@ -1,7 +1,4 @@
-"use client";
-
-import { useState } from "react";
-import { Info, ExternalLink } from "lucide-react";
+import React, { useCallback } from "react";
 import { cn } from "@lib/utils";
 import {
   Checkbox,
@@ -10,20 +7,18 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@components";
+import { Info, ExternalLink } from "lucide-react";
 
-interface Pattern {
+type Pattern = {
   _id: string;
   patternId: string;
   name: string;
   description: string;
   tactics: string[];
   url: string;
-}
+  [k: string]: any;
+};
 
-interface PatternTreeProps {
-  patterns: Pattern[];
-  onSelectionChange?: (selectedIds: string[]) => void;
-}
 const TACTIC_COLORS: Record<string, string> = {
   "command-and-control": "bg-warning-50 text-warning-400 border-warning-500/40",
   "credential-access": "bg-error-50 text-error-300 border-error-200",
@@ -52,115 +47,147 @@ const TACTIC_COLORS: Record<string, string> = {
   reconnaissance:
     "bg-blue-50 text-blue-700 border-blue-500/30 dark:bg-blue-500/30 dark:text-blue-50 dark:border-blue-200/30",
 };
-export function PatternTree({ patterns, onSelectionChange }: PatternTreeProps) {
-  const [selectedPatterns, setSelectedPatterns] = useState<Set<string>>(
-    new Set()
+
+interface PatternTreeProps {
+  rootIds: string[];
+  byId: Record<string, Pattern>;
+  childrenMap: Record<string, string[]>;
+  visibleSet: Set<string>;
+  selectedIds: Set<string>;
+  onSelectionChange?: (ids: string[]) => void;
+  onToggle?: (id: string) => void;
+}
+
+export function PatternTree({
+  rootIds,
+  byId,
+  childrenMap,
+  visibleSet,
+  selectedIds,
+  onSelectionChange,
+  onToggle,
+}: PatternTreeProps) {
+  // toggle with fallback
+  const internalToggle = useCallback(
+    (id: string) => {
+      if (onToggle) {
+        onToggle(id);
+      } else if (onSelectionChange) {
+        const next = new Set(selectedIds);
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        next.has(id) ? next.delete(id) : next.add(id);
+        onSelectionChange(Array.from(next));
+      }
+    },
+    [onToggle, onSelectionChange, selectedIds]
   );
 
-  // Group patterns by parent ID
-  const getChildren = (parentId: string) => {
-    return patterns.filter((p) => p.patternId.startsWith(parentId + "."));
-  };
+  // Memoized Row
+  const Row = React.memo(
+    function Row({
+      node,
+      depth,
+      checked,
+      onToggleRow,
+    }: {
+      node: Pattern;
+      depth: number;
+      checked: boolean;
+      onToggleRow: (id: string) => void;
+    }) {
+      const tactic = node.tactics?.[0] ?? "";
 
-  const getRootPatterns = () => {
-    return patterns.filter((p) => !p.patternId.includes("."));
-  };
-
-  const handleCheckboxChange = (patternId: string, checked: boolean) => {
-    const newSelected = new Set(selectedPatterns);
-    if (checked) {
-      newSelected.add(patternId);
-    } else {
-      newSelected.delete(patternId);
-    }
-    setSelectedPatterns(newSelected);
-    onSelectionChange?.(Array.from(newSelected));
-  };
-
-  const PatternRow = ({
-    pattern,
-    isChild = false,
-  }: {
-    pattern: Pattern;
-    isChild?: boolean;
-  }) => {
-    const children = getChildren(pattern.patternId);
-    const hasChildren = children.length > 0;
-    const isSelected = selectedPatterns.has(pattern._id);
-
-    return (
-      <div key={pattern._id}>
+      return (
         <div
-          className={cn(
-            "cursor-pointer text-sm flex items-center justify-between px-4 py-3 border-b border-border hover:bg-muted/50 transition-colors",
-            isChild && "ps-12"
-          )}
-          onClick={() => {
-            handleCheckboxChange(pattern._id, isSelected ? false : true);
-          }}
+          key={node._id}
+          className="cursor-pointer text-sm flex items-center justify-between px-4 py-3 border-b border-border hover:bg-muted/50 transition-colors"
+          style={{ paddingLeft: depth === 0 ? 8 : depth * 20 }}
+          onClick={() => onToggleRow(node._id)}
         >
           <div className="flex items-center gap-3 flex-1">
             <Checkbox
-              checked={isSelected ? true : "indeterminate"}
+              checked={checked ? true : "indeterminate"}
               className="rounded-full"
-              onCheckedChange={(checked) => {
-                handleCheckboxChange(pattern._id, checked === true);
-              }}
+              onCheckedChange={() => onToggleRow(node._id)}
             />
 
             <span className="font-medium text-foreground">
-              {pattern.patternId} - {pattern.name}
+              {node.patternId} - {node.name}
             </span>
           </div>
 
           <div className="flex items-center gap-3 ml-4">
             <span
               className={cn(
-                "inline-flex items-center text-nowrap justify-center text-center rounded-full border px-2 py-0.5 text-xs font-medium transition-colors leading-normal",
-                TACTIC_COLORS[pattern.tactics.at(0) || ""]
+                "inline-flex items-center text-nowrap justify-center rounded-full border px-2 py-0.5 text-xs font-medium transition-colors",
+                TACTIC_COLORS[tactic]
               )}
             >
-              {pattern.tactics.at(0)}
+              {tactic}
             </span>
+
             <TooltipProvider>
               <Tooltip>
-                <TooltipTrigger className="cursor-pointer">
+                <TooltipTrigger>
                   <Info size={18} />
                 </TooltipTrigger>
                 <TooltipContent className="max-w-lg">
-                  {pattern.description}
+                  {node.description}
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
 
             <a
-              href={pattern.url}
+              href={node.url}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="View details"
+              aria-label="Open URL"
             >
               <ExternalLink size={18} />
             </a>
           </div>
         </div>
+      );
+    },
+    (prev, next) =>
+      prev.node._id === next.node._id &&
+      prev.checked === next.checked &&
+      prev.depth === next.depth
+  );
 
-        {hasChildren && (
-          <div>
-            {children.map((child) => (
-              <PatternRow key={child._id} pattern={child} isChild={true} />
-            ))}
-          </div>
-        )}
-      </div>
-    );
-  };
+  // Recursive renderer
+  const renderNode = useCallback(
+    (id: string, depth = 0): React.ReactNode => {
+      if (!visibleSet.has(id)) return null;
 
-  const rootPatterns = getRootPatterns();
+      const node = byId[id];
+      if (!node) return null;
+
+      const children = childrenMap[id] ?? [];
+      const childrenNodes = children
+        .map((cid) => renderNode(cid, depth + 1))
+        .filter(Boolean);
+
+      return (
+        <div key={id}>
+          <Row
+            node={node}
+            depth={depth}
+            checked={selectedIds.has(id)}
+            onToggleRow={internalToggle}
+          />
+
+          {childrenNodes.length > 0 ? <div>{childrenNodes}</div> : null}
+        </div>
+      );
+    },
+    [visibleSet, byId, childrenMap, Row, selectedIds, internalToggle]
+  );
 
   return (
-    <div className="w-full border border-border rounded-lg overflow-hidden">
-      {rootPatterns.map((pattern) => (
-        <PatternRow key={pattern._id} pattern={pattern} />
+    <div className="w-full border border-border rounded-lg max-h-[400px] overflow-y-auto">
+      {rootIds.map((rid) => (
+        <div key={rid}>{renderNode(rid, 0)}</div>
       ))}
     </div>
   );

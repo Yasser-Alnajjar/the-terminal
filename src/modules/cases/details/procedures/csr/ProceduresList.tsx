@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { useTasksColumns } from "./columns";
+import { useObservablesColumns } from "./columns";
 import {
   DataTable,
   DataTableFilters,
@@ -11,21 +11,20 @@ import {
 } from "@components";
 import { useStore } from "@hooks";
 import { PieChart } from "@charts";
-
 import { ChartPie } from "lucide-react";
-import { AddTask } from "./AddTask";
+import { AddProcedure } from "./AddProcedure";
 
-export const TasksList = ({ data }: { data: any[] }) => {
-  const columns = useTasksColumns();
+export const ProceduresList = ({ data }: { data: any[] }) => {
+  const columns = useObservablesColumns();
   const { showFilter } = useStore((state) => ({
     showFilter: state.showFilter,
   }));
   const [showCharts, setShowCharts] = useState(false);
-  function getPieData(tasks: any[], key: any) {
+  function getPieData(data: any[], key: any, empty?: string) {
     const map: Record<string, number> = {};
 
-    for (const task of tasks) {
-      const value = (task[key] as string) || "Unknown";
+    for (const observable of data) {
+      const value = (observable[key] as string) || empty || "Unknown";
       map[value] = (map[value] || 0) + 1;
     }
 
@@ -35,8 +34,9 @@ export const TasksList = ({ data }: { data: any[] }) => {
     };
   }
 
-  const byStatus = getPieData(data, "status");
-  const byGroup = getPieData(data, "group");
+  const IOC = getPieData(data, "ioc", "false");
+  const datatype = getPieData(data, "dataType");
+
   return (
     <>
       <DataTableFilters
@@ -53,16 +53,14 @@ export const TasksList = ({ data }: { data: any[] }) => {
       {showCharts && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <PieChart
-            title="Tasks by Status"
-            labels={byStatus.labels}
-            series={byStatus.series}
-            colors={["#34d399", "#60a5fa", "#fbbf24", "#ef4444"]}
+            title="TTPs by datatype"
+            labels={datatype.labels}
+            series={datatype.series}
           />
           <PieChart
-            title="Tasks by Group"
-            labels={byGroup.labels}
-            series={byGroup.series}
-            colors={["#3b82f6", "#f97316", "#10b981", "#a855f7"]}
+            title="TTPs as IOC"
+            labels={IOC.labels}
+            series={IOC.series}
           />
         </div>
       )}
@@ -71,7 +69,7 @@ export const TasksList = ({ data }: { data: any[] }) => {
         columns={columns}
         data={data}
         addButton={() => {
-          return <AddTask />;
+          return <AddProcedure />;
         }}
         header={({ table }) => (
           <>

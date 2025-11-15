@@ -1,8 +1,8 @@
 "use client";
 
 import React, { forwardRef, useState } from "react";
-import { Label, ProgressInput, inputVariants } from "@components";
-import { Eye, EyeOff } from "lucide-react";
+import { Input, Label, inputVariants } from "@components";
+import { Eye, EyeOff, Lock } from "lucide-react";
 import { cn } from "@lib/utils";
 import { type VariantProps } from "class-variance-authority";
 
@@ -53,7 +53,7 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
         ) : null}
 
         <div className="relative">
-          <ProgressInput
+          <Input
             id={inputId}
             ref={ref}
             type={inputType}

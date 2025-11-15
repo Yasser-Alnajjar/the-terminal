@@ -56,7 +56,7 @@
   --color-primary-100: #cee5ff;
   --color-primary-200: #9dcbff;
   --color-primary-300: #55a2f6;
-  --color-primary-400: oklch(62.3% 0.214 259.815);
+  --color-primary-400: #2b7fff;
   --color-primary-500: #0057b8;
   --color-primary-600: #003e85;
   --color-primary-700: #002b5c;
@@ -69,7 +69,7 @@
   --color-error-100: #ffcece;
   --color-error-200: #ff9d9d;
   --color-error-300: #f65555;
-  --color-error-400: oklch(57.7% 0.245 27.325);
+  --color-error-400: #e7000b;
   --color-error-500: #b80000;
   --color-error-600: #850000;
   --color-error-700: #5c0000;

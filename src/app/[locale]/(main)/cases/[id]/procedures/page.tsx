@@ -1,12 +1,11 @@
-import React from "react";
 import { Cases } from "@modules";
+import React from "react";
 
 export const metadata = {
-  title: "Observables",
+  title: "TTPs - Case",
 };
-
 const page = () => {
-  return <Cases.Details.Observables />;
+  return <Cases.Details.Procedures />;
 };
 
 export default page;

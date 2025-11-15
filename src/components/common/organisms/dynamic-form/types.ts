@@ -4,6 +4,7 @@ export interface IFieldOption {
   label: string | React.ReactNode;
   value: string | any;
   itemClassName?: string;
+  [key: string]: any;
 }
 
 export interface IFieldConfig {
